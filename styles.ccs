@@ -1,0 +1,83 @@
+/* Centering the card and fixing the layout */
+.card {
+    background-color: #2b2b2b;
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    margin: 0 auto; /* Center card horizontally */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+/* Logo centering */
+.logo img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+/* Progress bar styling */
+#progressBar {
+    width: 100%;
+    height: 5px;
+    background-color: #444;
+    margin: 10px 0;
+    border-radius: 5px;
+    position: relative;
+}
+
+#progress {
+    width: 0;
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 5px;
+}
+
+/* Time display for current song */
+#currentTime,
+#totalTime {
+    display: inline-block;
+    color: white;
+    font-size: 12px;
+    margin: 5px;
+}
+
+/* Play button */
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Dark/Light mode switch */
+.dark-light-toggle {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#darkModeToggle {
+    width: 20px;
+    height: 20px;
+}
+
+/* Bio text */
+.bio-text {
+    margin-top: 15px;
+    color: white;
+    font-size: 14px;
+}
+
+/* Adjust icon spacing */
+.icon-links a {
+    margin: 0 10px;
+}
