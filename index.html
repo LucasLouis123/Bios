@@ -14,263 +14,173 @@
     <meta content="localhost" property="og:url" />
     <meta content="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?size=1024" property="og:image" />
     <meta content="#000000" data-react-helmet="true" name="theme-color" />
-
-    <style>
-        /* Background animation */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Comfortaa', sans-serif;
-            background: radial-gradient(circle, #000, #111);
-            color: #fff;
-            overflow: hidden;
-        }
-
-        /* Subtle background animation */
-        @keyframes backgroundMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        body {
-            background-size: 400% 400%;
-            animation: backgroundMove 20s infinite linear;
-        }
-
-        /* Main layout styles */
-        .card-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .card {
-            padding: 20px;
-            background: #333;
-            border-radius: 15px;
-            text-align: center;
-            width: 300px;
-        }
-
-        .logo img {
-            width: 100px;
-            border-radius: 50%;
-        }
-
-        .nick {
-            font-size: 24px;
-            margin: 15px 0;
-        }
-
-        .icon-links a {
-            margin: 0 10px;
-            color: #fff;
-            font-size: 24px;
-        }
-
-        .song-card {
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            background: #222;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .song-cover img {
-            width: 60px;
-            border-radius: 10px;
-        }
-
-        .song-info {
-            margin-left: 10px;
-        }
-
-        /* Volume slider */
-        #volumeSlider {
-            width: 100%;
-            margin-top: 15px;
-        }
-
-        /* Progress bar */
-        #progressBar {
-            width: 100%;
-            height: 5px;
-            background-color: #555;
-            border-radius: 5px;
-            margin-top: 10px;
-            position: relative;
-        }
-
-        #progress {
-            height: 100%;
-            background-color: #fff;
-            width: 0;
-        }
-
-        #timestamps {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-            font-size: 12px;
-        }
-
-        /* Bio section */
-        .bio {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #ccc;
-        }
-
-        /* Dark/Light mode toggle */
-        .theme-toggle {
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
 
-<!-- Audio Section -->
-<audio id="background-music" loop>
-    <source src="assets/music/music.mp3" type="audio/mp3">
-    Your browser does not support the audio tag.
-</audio>
+                 <!--- Audio ---> 
+        <audio id="background-music" loop>
+            <source src="assets/music/music.mp3" type="audio/mp3">
+            Your browser does not support the audio tag.
+        </audio>
+        <div class="caption">
+            <div class="card-container">
+                <!-- Karta  -->
+                <div class="card">
+                    <!--- Logo/Avatar ---> 
+                    <div class="logo">
+                        <img src="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?ex=66ec1f28&is=66eacda8&hm=37ffbc99435084044687eae7af4f3b1e0a7416b47cd05dad156d65bbee89660c&" alt="Logo">
+                    </div>
+                    <!--- Nick ---> 
+                    <div class="nick">
+                        x1nf
+                    </div>
+                    <!--- Linki ---> 
+                    <div class="icon-links">
+                        <a href="https://discordapp.com/users/869687741955309578" class="icon-link" target="_blank"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.youtube.com/@wifiexploiter" class="icon-link" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://github.com/" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/zwijg.sh" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <!-- Mała karta z aktualną piosenką -->
+                    <div class="song-card">
+                        <div class="song-cover">
+                            <img src="https://yt3.googleusercontent.com/w70bgAcP-LP-quUveZgOftrxBpWEzHctPfGnOyZXJYMyo3IZOld8qMnjOOxw70Zb-SqLUGfzGw=s160-c-k-c0x00ffffff-no-rj" alt="Nigga">
+                        </div>
+                        <div class="song-info">
+                            <div class="song-title">Shoot Pt.2</div>
+                            <div class="song-author">chii wvttz</div>
+                        </div>
+                        <!-- Karta do efektu glow (blasku) -->
+                        <div class="card-glow"></div>
+                    </div>
 
-<div class="card-container">
-    <div class="card">
-        <!-- Logo/Avatar -->
-        <div class="logo">
-            <img src="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg" alt="Logo">
-        </div>
-        
-        <!-- Nick -->
-        <div class="nick">x1nf</div>
-
-        <!-- Social Links -->
-        <div class="icon-links">
-            <a href="https://discordapp.com/users/869687741955309578" target="_blank"><i class="fab fa-discord"></i></a>
-            <a href="https://www.youtube.com/@wifiexploiter" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.instagram.com/zwijg.sh" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-
-        <!-- Song Card -->
-        <div class="song-card">
-            <div class="song-cover">
-                <img src="https://yt3.googleusercontent.com/w70bgAcP-LP-quUveZgOftrxBpWEzHctPfGnOyZXJYMyo3IZOld8qMnjOOxw70Zb-SqLUGfzGw=s160-c-k-c0x00ffffff-no-rj" alt="Cover Image">
+                    <!-- Suwak do regulacji głośności -->
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                    <button id="playButton">Play Music</button>
+                </div>
             </div>
-            <div class="song-info">
-                <div class="song-title">Shoot Pt.2</div>
-                <div class="song-author">chii wvttz</div>
-            </div>
-        </div>
-
-        <!-- Progress Bar -->
-        <div id="progressBar">
-            <div id="progress"></div>
-        </div>
-        <div>
-            <span id="currentTime">00:00</span> / 
-            <span id="totalTime">00:00</span>
-        </div>
-
-        <!-- Play Music Button -->
-        <button id="playButton">Play Music</button>
-
-        <!-- Volume Control -->
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
-
-        <!-- Personal Bio -->
-        <div class="bio-text">
-            Hi, I'm x1nf. Welcome to my bio page where you can check out my music, social links, and more!
-        </div>
-
-        <!-- Dark/Light Mode -->
-        <div class="dark-light-toggle">
-            Dark/Light Mode
-            <input type="checkbox" id="darkModeToggle">
         </div>
     </div>
-</div>
 
-<script>
-    const bgMusic = document.getElementById('background-music');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const playButton = document.getElementById('playButton');
-    const progressBar = document.getElementById('progress');
-    const currentTimeDisplay = document.getElementById('current-time');
-    const totalTimeDisplay = document.getElementById('total-time');
-    const themeSwitch = document.getElementById('themeSwitch');
-    
-    // Initialize volume
-    bgMusic.volume = volumeSlider.value;
+    <script>
+        const bgMusic = document.getElementById('background-music');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const playButton = document.getElementById('playButton');
 
-    // Update volume
-    function changeVolume() {
+        // Initialize volume based on slider
         bgMusic.volume = volumeSlider.value;
-    }
 
-    // Play/Pause music
-    function playMusic() {
-        if (bgMusic.paused) {
-            bgMusic.play();
-            playButton.textContent = "Pause Music";
-        } else {
-            bgMusic.pause();
-            playButton.textContent = "Play Music";
+        function changeVolume() {
+            bgMusic.volume = volumeSlider.value;
         }
-    }
 
-    // Update progress bar and time display
-    function updateProgress() {
-        const duration = bgMusic.duration;
-        const currentTime = bgMusic.currentTime;
-        const progressPercent = (currentTime / duration) * 100;
-        progressBar.style.width = progressPercent + "%";
-        currentTimeDisplay.textContent = formatTime(currentTime);
-        totalTimeDisplay.textContent = formatTime(duration);
-    }
+        function playMusic() {
+            bgMusic.play().catch(error => {
+                console.error('Autoplay was prevented or an error occurred:', error);
+            });
+        }
 
-    // Format time as mm:ss
-    function formatTime(time) {
-        const minutes = Math.floor(time / 60);
-        const seconds = Math.floor(time % 60);
-        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-    }
+        volumeSlider.addEventListener('input', changeVolume);
+        playButton.addEventListener('click', playMusic);
+    </script>
 
-    // Toggle dark/light mode
-    themeSwitch.addEventListener('change', function() {
-        document.body.classList.toggle('light-theme');
-    });
+</body>
+</html>
 
-    volumeSlider.addEventListener('input', changeVolume);
-    playButton.addEventListener('click', playMusic);
-    bgMusic.addEventListener('timeupdate', updateProgress);
+<!-- Comment Section -->
+    <div class="comment-section">
+        <h2>Comments</h2>
+        <div id="comments-container"></div>
 
-    // Load the total time once the music metadata is loaded
-    bgMusic.addEventListener('loadedmetadata', () => {
-        totalTimeDisplay.textContent = formatTime(bgMusic.duration);
-    });
-</script>
+        <!-- Comment Input -->
+        <textarea id="comment-input" placeholder="Add your comment"></textarea>
+        <button id="submit-comment">Submit</button>
+    </div>
 
-<style>
-    /* Light mode styles */
-    .light-theme {
-        background: radial-gradient(circle, #eee, #ccc);
-        color: #000;
-    }
+    <script>
+        let comments = [];
 
-    .light-theme .card {
-        background: #fff;
-        color: #000;
-    }
+        // Function to render comments
+        function renderComments() {
+            const commentsContainer = document.getElementById('comments-container');
+            commentsContainer.innerHTML = ''; // Clear existing comments
+            comments.forEach((comment, index) => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = 
+                    <p>${comment.text}</p>
+                    <div class="comment-actions">
+                        <button onclick="likeComment(${index})">Like (${comment.likes})</button>
+                        <button onclick="unlikeComment(${index})">Unlike (${comment.unlikes})</button>
+                    </div>
+                ;
+                commentsContainer.appendChild(commentDiv);
+            });
+        }
 
-    .light-theme .song-card {
-        background: #f0f0f0;
-    }
-</style>
+        // Handle comment submission
+        document.getElementById('submit-comment').addEventListener('click', function () {
+            const commentInput = document.getElementById('comment-input');
+            const commentText = commentInput.value.trim();
+            if (commentText) {
+                comments.push({ text: commentText, likes: 0, unlikes: 0 });
+                commentInput.value = ''; // Clear input
+                renderComments(); // Re-render the comments
+            }
+        });
 
+        // Like comment
+        function likeComment(index) {
+            comments[index].likes += 1;
+            renderComments();
+        }
+
+        // Unlike comment
+        function unlikeComment(index) {
+            comments[index].unlikes += 1;
+            renderComments();
+        }
+    </script>
+
+    <style>
+        .comment-section {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        #comment-input {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .comment {
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .comment-actions button {
+            margin-right: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        .comment-actions button:hover {
+            background: #0056b3;
+        }
+    </style>
+
+    <!-- Your other scripts... -->
 </body>
 </html>
