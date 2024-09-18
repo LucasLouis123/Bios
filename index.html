@@ -190,4 +190,28 @@
         }
 
         // Handle comment submission
-        document.getElementBy
+        document.getElementById('submit-comment').addEventListener('click', function () {
+            const commentInput = document.getElementById('comment-input');
+            const commentText = commentInput.value.trim();
+            if (commentText) {
+                comments.push({ text: commentText, likes: 0, unlikes: 0 });
+                commentInput.value = ''; // Clear input
+                renderComments(); // Re-render the comments
+            }
+        });
+
+        // Like comment
+        function likeComment(index) {
+            comments[index].likes += 1;
+            renderComments();
+        }
+
+        // Unlike comment
+        function unlikeComment(index) {
+            comments[index].unlikes += 1;
+            renderComments();
+        }
+    </script>
+
+</body>
+</html>
