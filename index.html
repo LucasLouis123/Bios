@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X1nf Bio</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Embed Do DC -->
+    <meta content="x1nf Bio" property="og:title" />
+    <meta content="x1nf Bio/LinkTree" property="og:description" />
+    <meta content="athena.ns.cloudflare.com" property="og:https://ddoslist.lol" />
+    <meta content="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?size=1024" property="og:image" />
+    <meta content="#000000" data-react-helmet="true" name="theme-color" />
+</head>
+<body>
+
+    <!--- Video and Audio ---> 
+    <div class="video-container">
+        <video autoplay muted loop>
+            <source src="assets/video/music.mp4" type="video/mp4" />
+        </video>
+        <audio id="background-music" loop>
+            <source src="assets/music/music.mp3" type="audio/mp3">
+            Your browser does not support the audio tag.
+        </audio>
+        <div class="caption">
+            <div class="card-container">
+                <!-- Karta  -->
+                <div class="card">
+                    <!--- Logo/Avatar ---> 
+                    <div class="logo">
+                        <img src="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?ex=66ec1f28&is=66eacda8&hm=37ffbc99435084044687eae7af4f3b1e0a7416b47cd05dad156d65bbee89660c&" alt="Logo">
+                    </div>
+                    <!--- Nick ---> 
+                    <div class="nick">
+                        x1nf
+                    </div>
+                    <!--- Linki ---> 
+                    <div class="icon-links">
+                        <a href="https://discordapp.com/users/869687741955309578" class="icon-link" target="_blank"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.youtube.com/@wifiexploiter" class="icon-link" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://github.com/" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/zwijg.sh" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <!-- Mała karta z aktualną piosenką -->
+                    <div class="song-card">
+                        <div class="song-cover">
+                            <img src="https://yt3.googleusercontent.com/w70bgAcP-LP-quUveZgOftrxBpWEzHctPfGnOyZXJYMyo3IZOld8qMnjOOxw70Zb-SqLUGfzGw=s160-c-k-c0x00ffffff-no-rj" alt="Nigga">
+                        </div>
+                        <div class="song-info">
+                            <div class="song-title">Shoot Pt.2</div>
+                            <div class="song-author">chii wvttz</div>
+                        </div>
+                        <!-- Karta do efektu glow (blasku) -->
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <!-- Suwak do regulacji głośności -->
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                    <button id="playButton">Play Music</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const bgMusic = document.getElementById('background-music');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const playButton = document.getElementById('playButton');
+
+        // Initialize volume based on slider
+        bgMusic.volume = volumeSlider.value;
+
+        function changeVolume() {
+            bgMusic.volume = volumeSlider.value;
+        }
+
+        function playMusic() {
+            bgMusic.play().catch(error => {
+                console.error('Autoplay was prevented or an error occurred:', error);
+            });
+        }
+
+        volumeSlider.addEventListener('input', changeVolume);
+        playButton.addEventListener('click', playMusic);
+    </script>
+
+</body>
+</html>
