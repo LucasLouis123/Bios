@@ -14,135 +14,16 @@
     <meta content="localhost" property="og:url" />
     <meta content="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?size=1024" property="og:image" />
     <meta content="#000000" data-react-helmet="true" name="theme-color" />
-</head>
-<body>
-
-                 <!--- Audio ---> 
-        <audio id="background-music" loop>
-            <source src="assets/music/music.mp3" type="audio/mp3">
-            Your browser does not support the audio tag.
-        </audio>
-        <div class="caption">
-            <div class="card-container">
-                <!-- Karta  -->
-                <div class="card">
-                    <!--- Logo/Avatar ---> 
-                    <div class="logo">
-                        <img src="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?ex=66ec1f28&is=66eacda8&hm=37ffbc99435084044687eae7af4f3b1e0a7416b47cd05dad156d65bbee89660c&" alt="Logo">
-                    </div>
-                    <!--- Nick ---> 
-                    <div class="nick">
-                        x1nf
-                    </div>
-                    <!--- Linki ---> 
-                    <div class="icon-links">
-                        <a href="https://discordapp.com/users/869687741955309578" class="icon-link" target="_blank"><i class="fab fa-discord"></i></a>
-                        <a href="https://www.youtube.com/@wifiexploiter" class="icon-link" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="https://github.com/" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.instagram.com/zwijg.sh" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                    <!-- Mała karta z aktualną piosenką -->
-                    <div class="song-card">
-                        <div class="song-cover">
-                            <img src="https://yt3.googleusercontent.com/w70bgAcP-LP-quUveZgOftrxBpWEzHctPfGnOyZXJYMyo3IZOld8qMnjOOxw70Zb-SqLUGfzGw=s160-c-k-c0x00ffffff-no-rj" alt="Nigga">
-                        </div>
-                        <div class="song-info">
-                            <div class="song-title">Shoot Pt.2</div>
-                            <div class="song-author">chii wvttz</div>
-                        </div>
-                        <!-- Karta do efektu glow (blasku) -->
-                        <div class="card-glow"></div>
-                    </div>
-
-                    <!-- Suwak do regulacji głośności -->
-                    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
-                    <button id="playButton">Play Music</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const bgMusic = document.getElementById('background-music');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const playButton = document.getElementById('playButton');
-
-        // Initialize volume based on slider
-        bgMusic.volume = volumeSlider.value;
-
-        function changeVolume() {
-            bgMusic.volume = volumeSlider.value;
-        }
-
-        function playMusic() {
-            bgMusic.play().catch(error => {
-                console.error('Autoplay was prevented or an error occurred:', error);
-            });
-        }
-
-        volumeSlider.addEventListener('input', changeVolume);
-        playButton.addEventListener('click', playMusic);
-    </script>
-
-</body>
-</html>
-
-<!-- Comment Section -->
-    <div class="comment-section">
-        <h2>Comments</h2>
-        <div id="comments-container"></div>
-
-        <!-- Comment Input -->
-        <textarea id="comment-input" placeholder="Add your comment"></textarea>
-        <button id="submit-comment">Submit</button>
-    </div>
-
-    <script>
-        let comments = [];
-
-        // Function to render comments
-        function renderComments() {
-            const commentsContainer = document.getElementById('comments-container');
-            commentsContainer.innerHTML = ''; // Clear existing comments
-            comments.forEach((comment, index) => {
-                const commentDiv = document.createElement('div');
-                commentDiv.classList.add('comment');
-                commentDiv.innerHTML = 
-                    <p>${comment.text}</p>
-                    <div class="comment-actions">
-                        <button onclick="likeComment(${index})">Like (${comment.likes})</button>
-                        <button onclick="unlikeComment(${index})">Unlike (${comment.unlikes})</button>
-                    </div>
-                ;
-                commentsContainer.appendChild(commentDiv);
-            });
-        }
-
-        // Handle comment submission
-        document.getElementById('submit-comment').addEventListener('click', function () {
-            const commentInput = document.getElementById('comment-input');
-            const commentText = commentInput.value.trim();
-            if (commentText) {
-                comments.push({ text: commentText, likes: 0, unlikes: 0 });
-                commentInput.value = ''; // Clear input
-                renderComments(); // Re-render the comments
-            }
-        });
-
-        // Like comment
-        function likeComment(index) {
-            comments[index].likes += 1;
-            renderComments();
-        }
-
-        // Unlike comment
-        function unlikeComment(index) {
-            comments[index].unlikes += 1;
-            renderComments();
-        }
-    </script>
 
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comfortaa', sans-serif;
+            background: url('https://cdn.discordapp.com/attachments/1255632932173774939/1255771389051539508/xinf.gif?ex=66ebc43e&is=66ea72be&hm=3ce11f0b0b2f57ee52195fedc48fe44646a65abab55caee8a0b362c49527e04a&') no-repeat center center fixed;
+            background-size: cover;
+        }
+
         .comment-section {
             margin-top: 20px;
             padding: 10px;
@@ -180,7 +61,128 @@
             background: #0056b3;
         }
     </style>
+</head>
+<body>
 
-    <!-- Your other scripts... -->
+    <!--- Audio ---> 
+    <audio id="background-music" loop>
+        <source src="assets/music/music.mp3" type="audio/mp3">
+        Your browser does not support the audio tag.
+    </audio>
+    <div class="caption">
+        <div class="card-container">
+            <!-- Karta  -->
+            <div class="card">
+                <!--- Logo/Avatar ---> 
+                <div class="logo">
+                    <img src="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?ex=66ec1f28&is=66eacda8&hm=37ffbc99435084044687eae7af4f3b1e0a7416b47cd05dad156d65bbee89660c&" alt="Logo">
+                </div>
+                <!--- Nick ---> 
+                <div class="nick">
+                    x1nf
+                </div>
+                <!--- Linki ---> 
+                <div class="icon-links">
+                    <a href="https://discordapp.com/users/869687741955309578" class="icon-link" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.youtube.com/@wifiexploiter" class="icon-link" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://github.com/" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/zwijg.sh" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+                <!-- Mała karta z aktualną piosenką -->
+                <div class="song-card">
+                    <div class="song-cover">
+                        <img src="https://yt3.googleusercontent.com/w70bgAcP-LP-quUveZgOftrxBpWEzHctPfGnOyZXJYMyo3IZOld8qMnjOOxw70Zb-SqLUGfzGw=s160-c-k-c0x00ffffff-no-rj" alt="Nigga">
+                    </div>
+                    <div class="song-info">
+                        <div class="song-title">Shoot Pt.2</div>
+                        <div class="song-author">chii wvttz</div>
+                    </div>
+                    <!-- Karta do efektu glow (blasku) -->
+                    <div class="card-glow"></div>
+                </div>
+
+                <!-- Suwak do regulacji głośności -->
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                <button id="playButton">Play Music</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const bgMusic = document.getElementById('background-music');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const playButton = document.getElementById('playButton');
+
+        // Initialize volume based on slider
+        bgMusic.volume = volumeSlider.value;
+
+        function changeVolume() {
+            bgMusic.volume = volumeSlider.value;
+        }
+
+        function playMusic() {
+            bgMusic.play().catch(error => {
+                console.error('Autoplay was prevented or an error occurred:', error);
+            });
+        }
+
+        volumeSlider.addEventListener('input', changeVolume);
+        playButton.addEventListener('click', playMusic);
+    </script>
+
+    <div class="comment-section">
+        <h2>Comments</h2>
+        <div id="comments-container"></div>
+
+        <!-- Comment Input -->
+        <textarea id="comment-input" placeholder="Add your comment"></textarea>
+        <button id="submit-comment">Submit</button>
+    </div>
+
+    <script>
+        let comments = [];
+
+        // Function to render comments
+        function renderComments() {
+            const commentsContainer = document.getElementById('comments-container');
+            commentsContainer.innerHTML = ''; // Clear existing comments
+            comments.forEach((comment, index) => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `
+                    <p>${comment.text}</p>
+                    <div class="comment-actions">
+                        <button onclick="likeComment(${index})">Like (${comment.likes})</button>
+                        <button onclick="unlikeComment(${index})">Unlike (${comment.unlikes})</button>
+                    </div>
+                `;
+                commentsContainer.appendChild(commentDiv);
+            });
+        }
+
+        // Handle comment submission
+        document.getElementById('submit-comment').addEventListener('click', function () {
+            const commentInput = document.getElementById('comment-input');
+            const commentText = commentInput.value.trim();
+            if (commentText) {
+                comments.push({ text: commentText, likes: 0, unlikes: 0 });
+                commentInput.value = ''; // Clear input
+                renderComments(); // Re-render the comments
+            }
+        });
+
+        // Like comment
+        function likeComment(index) {
+            comments[index].likes += 1;
+            renderComments();
+        }
+
+        // Unlike comment
+        function unlikeComment(index) {
+            comments[index].unlikes += 1;
+            renderComments();
+        }
+    </script>
+
 </body>
 </html>
