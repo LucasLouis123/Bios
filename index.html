@@ -182,13 +182,82 @@
     </style>
 
     <!-- Your other scripts... -->
-        <!-- Dark/Light Mode Toggle -->
-        <div class="theme-toggle">
-            <label for="themeSwitch">Dark/Light Mode</label>
-            <input type="checkbox" id="themeSwitch">
-        </div>
-    </div>
-</div>
+<script>
+    const bgMusic = document.getElementById('background-music');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const playButton = document.getElementById('playButton');
+    const progressBar = document.getElementById('progress');
+    const currentTimeDisplay = document.getElementById('current-time');
+    const totalTimeDisplay = document.getElementById('total-time');
+    const themeSwitch = document.getElementById('themeSwitch');
+    
+    // Initialize volume
+    bgMusic.volume = volumeSlider.value;
+
+    // Update volume
+    function changeVolume() {
+        bgMusic.volume = volumeSlider.value;
+    }
+
+    // Play/Pause music
+    function playMusic() {
+        if (bgMusic.paused) {
+            bgMusic.play();
+            playButton.textContent = "Pause Music";
+        } else {
+            bgMusic.pause();
+            playButton.textContent = "Play Music";
+        }
+    }
+
+    // Update progress bar and time display
+    function updateProgress() {
+        const duration = bgMusic.duration;
+        const currentTime = bgMusic.currentTime;
+        const progressPercent = (currentTime / duration) * 100;
+        progressBar.style.width = progressPercent + "%";
+        currentTimeDisplay.textContent = formatTime(currentTime);
+        totalTimeDisplay.textContent = formatTime(duration);
+    }
+
+    // Format time as mm:ss
+    function formatTime(time) {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+
+    // Toggle dark/light mode
+    themeSwitch.addEventListener('change', function() {
+        document.body.classList.toggle('light-theme');
+    });
+
+    volumeSlider.addEventListener('input', changeVolume);
+    playButton.addEventListener('click', playMusic);
+    bgMusic.addEventListener('timeupdate', updateProgress);
+
+    // Load the total time once the music metadata is loaded
+    bgMusic.addEventListener('loadedmetadata', () => {
+        totalTimeDisplay.textContent = formatTime(bgMusic.duration);
+    });
+</script>
+
+<style>
+    /* Light mode styles */
+    .light-theme {
+        background: radial-gradient(circle, #eee, #ccc);
+        color: #000;
+    }
+
+    .light-theme .card {
+        background: #fff;
+        color: #000;
+    }
+
+    .light-theme .song-card {
+        background: #f0f0f0;
+    }
+</style>
 
 </body>
 </html>
