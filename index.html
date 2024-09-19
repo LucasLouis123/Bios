@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <!-- Favicon Link -->
-    <link rel="icon" href="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?ex=66ec1f28&is=66eacda8&hm=37ffbc99435084044687eae7af4f3b1e0a7416b47cd05dad156d65bbee89660c&" type="image/jpeg">
-
     <style>
         body {
             margin: 0;
@@ -138,13 +135,13 @@
             comments.forEach((comment, index) => {
                 const commentDiv = document.createElement('div');
                 commentDiv.classList.add('comment');
-                commentDiv.innerHTML = `
+                commentDiv.innerHTML = 
                     <p>${comment.text}</p>
                     <div class="comment-actions">
                         <button onclick="likeComment(${index})">Like (${comment.likes})</button>
                         <button onclick="unlikeComment(${index})">Unlike (${comment.unlikes})</button>
                     </div>
-                `;
+                ;
                 commentsContainer.appendChild(commentDiv);
             });
         }
