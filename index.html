@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <link rel="icon" href="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?ex=66ec1f28&is=66eacda8&hm=37ffbc99435084044687eae7af4f3b1e0a7416b47cd05dad156d65bbee89660c&" type="image/jpeg">
+    <!-- Embed Do DC -->
+    <meta content="x1nf Bio" property="og:title" />
+    <meta content="x1nf Bio/LinkTree" property="og:description" />
+    <meta content="localhost" property="og:url" />
+    <meta content="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?size=1024" property="og:image" />
+    <meta content="#000000" data-react-helmet="true" name="theme-color" />
 
     <style>
         body {
@@ -19,16 +24,41 @@
             background-size: cover;
         }
 
-        .view-count {
-            margin: 20px;
-            font-size: 1.2em;
-            display: flex;
-            align-items: center;
-            color: #fff; /* Adjust the color for visibility */
+        .comment-section {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
         }
 
-        .view-count i {
+        #comment-input {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .comment {
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .comment-actions button {
             margin-right: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        .comment-actions button:hover {
+            background: #0056b3;
         }
     </style>
 </head>
@@ -78,12 +108,10 @@
         </div>
     </div>
 
-
     <script>
         const bgMusic = document.getElementById('background-music');
         const volumeSlider = document.getElementById('volumeSlider');
         const playButton = document.getElementById('playButton');
-        const viewCountElement = document.getElementById('viewCount');
 
         // Initialize volume based on slider
         bgMusic.volume = volumeSlider.value;
@@ -100,7 +128,6 @@
 
         volumeSlider.addEventListener('input', changeVolume);
         playButton.addEventListener('click', playMusic);
-
     </script>
 
 </body>
