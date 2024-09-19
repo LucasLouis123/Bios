@@ -8,150 +8,58 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <!-- Favicon Link -->
-    <link rel="icon" href="https://cdn.discordapp.com/attachments/1255632932173774939/1255771389051539508/xinf.gif?ex=66ed15be&is=66ebc43e&hm=778bd62ea946fa9d5494e5d0c2d9fb363618e7f7aa45a126baa966f831252e7e&" type="image/gif">
-
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Comfortaa', sans-serif;
-            background: url('assets/img/background.png') no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .card-container {
-            background-color: #333;
-            border-radius: 15px;
-            padding: 20px;
-            width: 350px;
-            text-align: center;
-            box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.7);
-        }
-
-        .logo img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-
-        .nick {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: white;
-            margin: 10px 0;
-        }
-
-        .icon-links {
-            margin: 10px 0;
-        }
-
-        .icon-link {
-            margin: 0 10px;
-            font-size: 1.5em;
-            color: white;
-        }
-
-        .song-card {
-            background-color: #444;
-            border-radius: 10px;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: white;
-            margin: 15px 0;
-        }
-
-        .song-cover img {
-            width: 50px;
-            height: 50px;
-            border-radius: 5px;
-        }
-
-        .song-info {
-            flex-grow: 1;
-            margin-left: 10px;
-            text-align: left;
-        }
-
-        .song-title {
-            font-size: 1.1em;
-            font-weight: bold;
-        }
-
-        .song-author {
-            font-size: 0.9em;
-        }
-
-        input[type="range"] {
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        #playButton {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #00aaff;
-            border: none;
-            color: white;
-            font-size: 1em;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #playButton:hover {
-            background-color: #0077cc;
-        }
-
-    </style>
+    <!-- Embed Do DC -->
+    <meta content="x1nf Bio" property="og:title" />
+    <meta content="x1nf Bio/LinkTree" property="og:description" />
+    <meta content="localhost" property="og:url" />
+    <meta content="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?size=1024" property="og:image" />
+    <meta content="#000000" data-react-helmet="true" name="theme-color" />
 </head>
 <body>
 
-    <!--- Audio ---> 
-    <audio id="background-music" loop>
-        <source src="assets/music/music.mp3" type="audio/mp3">
-        Your browser does not support the audio tag.
-    </audio>
+                 <!--- Audio ---> 
+        <audio id="background-music" loop>
+            <source src="assets/music/music.mp3" type="audio/mp3">
+            Your browser does not support the audio tag.
+        </audio>
+        <div class="caption">
+            <div class="card-container">
+                <!-- Karta  -->
+                <div class="card">
+                    <!--- Logo/Avatar ---> 
+                    <div class="logo">
+                        <img src="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?ex=66ec1f28&is=66eacda8&hm=37ffbc99435084044687eae7af4f3b1e0a7416b47cd05dad156d65bbee89660c&" alt="Logo">
+                    </div>
+                    <!--- Nick ---> 
+                    <div class="nick">
+                        x1nf
+                    </div>
+                    <!--- Linki ---> 
+                    <div class="icon-links">
+                        <a href="https://discordapp.com/users/869687741955309578" class="icon-link" target="_blank"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.youtube.com/@wifiexploiter" class="icon-link" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://github.com/" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/zwijg.sh" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <!-- Mała karta z aktualną piosenką -->
+                    <div class="song-card">
+                        <div class="song-cover">
+                            <img src="https://yt3.googleusercontent.com/w70bgAcP-LP-quUveZgOftrxBpWEzHctPfGnOyZXJYMyo3IZOld8qMnjOOxw70Zb-SqLUGfzGw=s160-c-k-c0x00ffffff-no-rj" alt="Nigga">
+                        </div>
+                        <div class="song-info">
+                            <div class="song-title">Shoot Pt.2</div>
+                            <div class="song-author">chii wvttz</div>
+                        </div>
+                        <!-- Karta do efektu glow (blasku) -->
+                        <div class="card-glow"></div>
+                    </div>
 
-    <div class="card-container">
-        <!--- Logo/Avatar ---> 
-        <div class="logo">
-            <img src="assets/img/avatar.png" alt="Logo">
-        </div>
-
-        <!--- Nick ---> 
-        <div class="nick">
-            x1nf
-        </div>
-
-        <!--- Linki ---> 
-        <div class="icon-links">
-            <a href="https://discordapp.com/users/869687741955309578" class="icon-link" target="_blank"><i class="fab fa-discord"></i></a>
-            <a href="https://www.youtube.com/@wifiexploiter" class="icon-link" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://github.com/" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.instagram.com/zwijg.sh" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-
-        <!-- Mała karta z aktualną piosenką -->
-        <div class="song-card">
-            <div class="song-cover">
-                <img src="assets/img/song-cover.jpg" alt="Song Cover">
+                    <!-- Suwak do regulacji głośności -->
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                    <button id="playButton">Play Music</button>
+                </div>
             </div>
-            <div class="song-info">
-                <div class="song-title">Shoot Pt.2</div>
-                <div class="song-author">chii wvttz</div>
-            </div>
         </div>
-
-        <!-- Suwak do regulacji głośności -->
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
-        <button id="playButton">Play Music</button>
     </div>
 
     <script>
