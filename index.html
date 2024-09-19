@@ -8,12 +8,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <!-- Embed Do DC -->
-    <meta content="x1nf Bio" property="og:title" />
-    <meta content="x1nf Bio/LinkTree" property="og:description" />
-    <meta content="localhost" property="og:url" />
-    <meta content="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?size=1024" property="og:image" />
-    <meta content="#000000" data-react-helmet="true" name="theme-color" />
+    <!-- Favicon Link -->
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/1280202844405764197/1285947201264156713/IMG_5268.jpg?ex=66ec1f28&is=66eacda8&hm=37ffbc99435084044687eae7af4f3b1e0a7416b47cd05dad156d65bbee89660c&" type="image/jpeg">
 
     <style>
         body {
@@ -24,41 +20,16 @@
             background-size: cover;
         }
 
-        .comment-section {
-            margin-top: 20px;
-            padding: 10px;
-            background: #f9f9f9;
-            border-radius: 8px;
+        .view-count {
+            margin: 20px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            color: #fff; /* Adjust the color for visibility */
         }
 
-        #comment-input {
-            width: 100%;
-            height: 80px;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-
-        .comment {
-            padding: 10px;
-            background: #fff;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-
-        .comment-actions button {
+        .view-count i {
             margin-right: 10px;
-            background: #007bff;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-        }
-
-        .comment-actions button:hover {
-            background: #0056b3;
         }
     </style>
 </head>
@@ -108,10 +79,17 @@
         </div>
     </div>
 
+    <!-- Viewer Count -->
+    <div class="view-count">
+        <i class="fas fa-eye"></i>
+        <span id="viewCount">Loading...</span>
+    </div>
+
     <script>
         const bgMusic = document.getElementById('background-music');
         const volumeSlider = document.getElementById('volumeSlider');
         const playButton = document.getElementById('playButton');
+        const viewCountElement = document.getElementById('viewCount');
 
         // Initialize volume based on slider
         bgMusic.volume = volumeSlider.value;
@@ -128,6 +106,71 @@
 
         volumeSlider.addEventListener('input', changeVolume);
         playButton.addEventListener('click', playMusic);
+
+        // Fetch view count from server
+        fetch('views.php')
+            .then(response => response.text())
+            .then(data => {
+                viewCountElement.textContent = data;
+            })
+            .catch(error => {
+                console.error('Error fetching view count:', error);
+                viewCountElement.textContent = 'Error';
+            });
+    </script>
+
+    <div class="comment-section">
+        <h2>Comments</h2>
+        <div id="comments-container"></div>
+
+        <!-- Comment Input -->
+        <textarea id="comment-input" placeholder="Add your comment"></textarea>
+        <button id="submit-comment">Submit</button>
+    </div>
+
+    <script>
+        let comments = [];
+
+        // Function to render comments
+        function renderComments() {
+            const commentsContainer = document.getElementById('comments-container');
+            commentsContainer.innerHTML = ''; // Clear existing comments
+            comments.forEach((comment, index) => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `
+                    <p>${comment.text}</p>
+                    <div class="comment-actions">
+                        <button onclick="likeComment(${index})">Like (${comment.likes})</button>
+                        <button onclick="unlikeComment(${index})">Unlike (${comment.unlikes})</button>
+                    </div>
+                `;
+                commentsContainer.appendChild(commentDiv);
+            });
+        }
+
+        // Handle comment submission
+        document.getElementById('submit-comment').addEventListener('click', function () {
+            const commentInput = document.getElementById('comment-input');
+            const commentText = commentInput.value.trim();
+            if (commentText) {
+                comments.push({ text: commentText, likes: 0, unlikes: 0 });
+                commentInput.value = ''; // Clear input
+                renderComments(); // Re-render the comments
+            }
+        });
+
+        // Like comment
+        function likeComment(index) {
+            comments[index].likes += 1;
+            renderComments();
+        }
+
+        // Unlike comment
+        function unlikeComment(index) {
+            comments[index].unlikes += 1;
+            renderComments();
+        }
     </script>
 
 </body>
