@@ -5,7 +5,7 @@ const nextBtn = document.getElementById('next');
 const footer = document.getElementById('footer');
 const seekBar = document.getElementById('seek-bar');
 
-const defaultFooterText = '〤 CutNation 〤';
+const defaultFooterText = '〤 CumNation 〤';
 
 const tracks = [
     { title: "Destroy Lonely - if looks could kill", path: "assets/music/iflookscouldkill.mp3" },
