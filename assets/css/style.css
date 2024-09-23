@@ -1,20 +1,21 @@
 @import url(fonts/icons.css);
 @import url(variables.css);
+
 @-webkit-keyframes fadeIn {
     0% {
-        opacity: 0
+        opacity: 0;
     }
     to {
-        opacity: 1
+        opacity: 1;
     }
 }
 
 @keyframes fadeIn {
     0% {
-        opacity: 0
+        opacity: 0;
     }
     to {
-        opacity: 1
+        opacity: 1;
     }
 }
 
@@ -29,6 +30,10 @@ html {
 
 body {
     background-color: var(--bg-color);
+    background-image: url('https://cdn.discordapp.com/attachments/1239129674744070227/1287759541123154070/chill.gif?ex=66f2b708&is=66f16588&hm=5a44c293003d633c693494fee3bece4faafdb7d0b687282cf7eba7b3888ed1d9&'); /* Add your GIF URL here */
+    background-size: cover; /* Cover the entire background */
+    background-repeat: no-repeat; /* Prevent repeating */
+    background-position: center; /* Center the background */
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
     animation-duration: 1s;
@@ -40,6 +45,7 @@ body {
     -o-user-select: none;
 }
 
+/* Remaining styles... */
 main {
     display: flex;
     justify-content: center;
