@@ -1,0 +1,370 @@
+@import url(fonts/icons.css);
+@import url(variables.css);
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+* {
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    font-family: monospace;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100svh;
+    padding: 0 1em;
+}
+
+img {
+    cursor: pointer;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: var(--img-border);
+    max-width: 150px;
+}
+
+#who {
+    color: var(--text-color);
+    font-size: clamp(25px, 8vw, 30px);
+    margin-bottom: 10px;
+}
+
+#footer {
+    color: var(--text-color-light);
+    font-size: clamp(12px, 8vw, 20px);
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    will-change: opacity;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.5s forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.5s forwards;
+}
+
+button {
+    background-color: var(--btn-bg);
+    border: var(--btn-border);
+    border-radius: 5px;
+    padding: 15px;
+    font-size: clamp(18px, 2vw, 20px);
+    color: var(--btn-color);
+    cursor: pointer;
+    font-family: monospace;
+    margin: 5px;
+    transition: all 0.2s ease-in-out;
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+    color: var(--ahref-color);
+    font-family: monospace;
+}
+
+.flexbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.flexbox .icon {
+    padding: 5px;
+    font-style: normal;
+    border: 2px dashed;
+    color: var(--icon-color);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border-radius: 50%;
+    background-color: var(--icon-bg);
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: var(--btn-hover-bg);
+    border-radius: 5px;
+    padding: 20px;
+    font-size: clamp(20px, 2vw, 25px);
+}
+
+.music-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.music-player button {
+    background-color: var(--btn-bg);
+    border: none;
+    color: var(--btn-color);
+    padding: 10px 15px;
+    margin: 10px 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.music-player button:focus {
+    outline: none;
+}
+
+.music-player i {
+    font-size: 18px;
+}
+
+#seek-bar {
+    width: 200px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    appearance: none;
+    background: #333;
+    height: 4px;
+    border-radius: 5px;
+    outline: none;
+}
+
+#seek-bar::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #006b99;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+#seek-bar::-webkit-slider-thumb:hover {
+    background: #2500cc;
+}
+
+#seek-bar::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #006b99;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+#seek-bar::-moz-range-thumb:hover {
+    background: #8100cc;
+}
+
+/* Pop-up Styles */
+#popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg-color);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 1000;
+    width: 300px;
+    height: 300px; /* Fixed height for the 3x3 grid */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#popup.show {
+    display: block; /* Ensure the popup becomes visible */
+    opacity: 1;
+}
+
+#popup h2 {
+    margin-top: 0;
+    color: var(--text-color);
+    font-size: 20px;
+    font-family: monospace;
+    text-align: center;
+}
+
+#popup ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create 3 columns */
+    grid-gap: 10px; /* Space between blocks */
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0; /* Add some spacing from the title */
+}
+
+#popup ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px; /* Make the blocks square */
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    font-family: monospace;
+    font-size: 18px;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    overflow: hidden; /* Ensure images don't overflow out of the blocks */
+    position: relative; /* Make it possible to layer the text and image */
+}
+
+#popup ul li img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Fit the images to the block's size */
+    height: 100%;
+    object-fit: cover; /* Ensure the images maintain aspect ratio */
+    border-radius: 8px;
+    filter: opacity(60%);
+    z-index: 0; /* Send the image behind the text */
+}
+
+#popup ul li .friend-name {
+    position: relative;
+    z-index: 1; /* Ensure the text is on top of the image */
+    color: white; /* Text color */
+    font-weight: bold;
+    text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5); /* Make the text readable over the image */
+}
+
+#popup ul li:hover {
+    background-color: var(--btn-hover-bg); /* Change background on hover */
+}
+
+/* Close Button */
+#popup button {
+    background-color: var(--btn-bg);
+    border: var(--btn-border);
+    padding: 10px;
+    color: var(--btn-color);
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+}
+
+#popup button:hover {
+    background-color: var(--btn-hover-bg);
+    padding: 12px;
+}
+
+/* Background Overlay */
+#overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Ensure the background is properly dimmed */
+    z-index: 999;
+}
+
+#overlay.show {
+    display: block; /* Show overlay when active */
+}
+
+::selection {
+    background-color: var(--selection)
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 4px;
+    height: 4px
+}
+
+::-webkit-scrollbar-button {
+    display: none
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-bar)
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 870px) {
+    .flexbox {
+        flex-direction: column;
+    }
+    .flexbox button {
+        width: 100%;
+    }
+
+    .music-player {
+        gap: 5px;
+    }
+    .music-player button {
+        padding: 8px 12px;
+    }
+    .music-player i {
+        font-size: 18px;
+    }
+}
