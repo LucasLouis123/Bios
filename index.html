@@ -15,50 +15,100 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/b756c00e57.js" crossorigin="anonymous"></script>
 
-    <title>​</title>
+    <style>
+        /* Full-screen overlay styling */
+        #entry-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #000; /* Black background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Ensure it's on top of everything */
+        }
+
+        #enter-button {
+            background-color: #878ece; /* Match theme color */
+            border: none;
+            padding: 20px 40px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #enter-button:hover {
+            background-color: #6c76a5; /* Darker color on hover */
+        }
+
+        /* Hide the main content initially */
+        #main-content {
+            display: none;
+        }
+    </style>
+
+    <title>Welcome</title>
 </head>
 <body>
-    <main>
-        <img id="dc-pfp" src="assets/img/pfp.png">
-        <span id="who">custom</span>
-        <span id="footer"></span>
-        
-        <!-- Music Player -->
-        <div class="music-player">
-            <input type="range" id="seek-bar" value="0" min="0" max="100" step="1">
-            <div class="controls">
-                <button id="prev"><i class="icon fa-solid fa-backward"></i></button>
-                <button id="play-pause"><i class="icon fa-solid fa-play"></i></button>
-                <button id="next"><i class="icon fa-solid fa-forward"></i></button>
+
+    <!-- Entry screen -->
+    <div id="entry-screen">
+        <button id="enter-button">Click to Enter</button>
+    </div>
+
+    <!-- Main content -->
+    <div id="main-content">
+        <main>
+            <img id="dc-pfp" src="assets/img/pfp.png">
+            <span id="who">custom</span>
+            <span id="footer"></span>
+
+            <!-- Music Player -->
+            <div class="music-player">
+                <input type="range" id="seek-bar" value="0" min="0" max="100" step="1">
+                <div class="controls">
+                    <button id="prev"><i class="icon fa-solid fa-backward"></i></button>
+                    <button id="play-pause"><i class="icon fa-solid fa-play"></i></button>
+                    <button id="next"><i class="icon fa-solid fa-forward"></i></button>
+                </div>
             </div>
-        </div>
 
-        <!-- Social Links -->
-        <div class="flexbox">
-            <a href="https://instagram.com/@zwijg.sh" target="_blank"><button><i class="icon fa-brands instagram"></i>@zwijg.sh</button></a>
-            <a href="https://www.tiktok.com/@wastedvon" target="_blank"><button><i class="icon fa-brands tiktok"></i>@wastedvon</button></a>
-            <a href="discord" target="_blank"><button><i class="icon fa-brands discord"></i>/karma</button></a>
-        </div>
-    </main>
+            <!-- Social Links -->
+            <div class="flexbox">
+                <a href="https://instagram.com/@zwijg.sh" target="_blank"><button><i class="icon fa-brands instagram"></i>@zwijg.sh</button></a>
+                <a href="https://www.tiktok.com/@wastedvon" target="_blank"><button><i class="icon fa-brands tiktok"></i>@wastedvon</button></a>
+                <a href="discord" target="_blank"><button><i class="icon fa-brands discord"></i>/karma</button></a>
+            </div>
+        </main>
 
-    <div id="overlay"></div>
-    <div id="popup">
-        <h2>ʚ ♡ ɞ</h2>
-        <ul>
-            <li><img src="" id="wxrn" alt="1158429903629336646"><span class="friend-name">𝖜𝖆𝖗𝖓</span></li>
-            <li><img src="" id="cord" alt="1179023390556823653"><span class="friend-name">cord</span></li>
-            <li><img src="" id="swibs" alt="1102339285602025532"><span class="friend-name">Swibs Ak</span></li>
-            <li><img src="" id="maka" alt="1155276455463374898"><span class="friend-name">🔥𐌌𐌀𐌊𐌀🔥 </span></li>
-            <li><img src="" id="karma" alt="1213140177774706759"><span class="friend-name">./𝗞⃥𝘈̸𝗥⃥𝘔̸𝗔⃥</span></li>
-            <li><img src="" id="u8ej" alt="1260438368081154180"><span class="friend-name">u8ej</span></li>
-            <li><img src="" id="roxy" alt="887236413718929418"><span class="friend-name">𝑹𝒐𝒙𝒚🌺</span></li>
-            <li><img src="" id="Hbr" alt="1114309411935096974"><span class="friend-name">HBR</span></li>
-            <li><img src="Korte" id="" alt="1274037849187946556"><span class="friend-name">Korte32</span></li>
-        </ul>
-        <button onclick="closePopup()">close</button>
+        <div id="overlay"></div>
+        <div id="popup">
+            <h2>ʚ ♡ ɞ</h2>
+            <ul>
+                <li><img src="" id="wxrn" alt="1158429903629336646"><span class="friend-name">𝖜𝖆𝖗𝖓</span></li>
+                <li><img src="" id="cord" alt="1179023390556823653"><span class="friend-name">cord</span></li>
+                <li><img src="" id="swibs" alt="1102339285602025532"><span class="friend-name">Swibs Ak</span></li>
+                <li><img src="" id="maka" alt="1155276455463374898"><span class="friend-name">🔥𐌌𐌀𐌊𐌀🔥 </span></li>
+                <li><img src="" id="karma" alt="1213140177774706759"><span class="friend-name">./𝗞⃥𝘈̸𝗥⃥𝘔̸𝗔⃥</span></li>
+                <li><img src="" id="u8ej" alt="1260438368081154180"><span class="friend-name">u8ej</span></li>
+                <li><img src="" id="roxy" alt="887236413718929418"><span class="friend-name">𝑹𝒐𝒙𝒚🌺</span></li>
+                <li><img src="" id="Hbr" alt="1114309411935096974"><span class="friend-name">HBR</span></li>
+                <li><img src="Korte" id="" alt="1274037849187946556"><span class="friend-name">Korte32</span></li>
+            </ul>
+            <button onclick="closePopup()">close</button>
+        </div>
     </div>
 
     <script>
+        // Show the main content and hide the entry screen on button click
+        document.getElementById('enter-button').addEventListener('click', function() {
+            document.getElementById('entry-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        });
+
         // Function to check if IP is in blacklist
         function isBlacklisted(ip, callback) {
             $.get("blacklist.txt", function(blacklistData) {
@@ -71,7 +121,6 @@
             $.getJSON("https://api.ipify.org?format=json", function (data) {
                 isBlacklisted(data.ip, function(isBlocked) {
                     if (!isBlocked) {
-                        // IP is not blacklisted, continue with logging
                         $.getJSON(
                             `https://vpnapi.io/api/${data.ip}?key=09743a6399ca4bc4a635c51ecb847a6c`,
                             function (vpnData) {
