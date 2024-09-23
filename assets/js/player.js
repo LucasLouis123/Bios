@@ -10,6 +10,7 @@ const defaultFooterText = '〤 CumNation 〤';
 const tracks = [
     { title: "Destroy Lonely - if looks could kill", path: "assets/music/iflookscouldkill.mp3" },
     { title: "Ken Carson - Succubus", path: "assets/music/Succubus.mp3" },
+    { title: "Chii Wvttz - Shoot Pt.2", path: "assets/music/music.mp3" },
     { title: "Don Toliver - Bandit", path: "assets/music/Bandit.mp3" },
     { title: "Yeat - Shade", path: "assets/music/Shade.mp3" },
     { title: "che x SEMATARY - 666", path: "assets/music/666.mp3" },
