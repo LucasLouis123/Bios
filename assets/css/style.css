@@ -30,7 +30,7 @@ html {
 
 body {
     background-color: var(--bg-color);
-    background-image: url('https://wallpaperxyz.com/wp-content/uploads/Gif-Animated-Wallpaper-Background-Full-HD-Free-Download-for-PC-Macbook-261121-Wallpaperxyz.com-25.gif'); /* Add your GIF URL here */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/bg.gif');
     background-size: cover; /* Cover the entire background */
     background-repeat: no-repeat; /* Prevent repeating */
     background-position: center; /* Center the background */
