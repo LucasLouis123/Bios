@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" id="short-icon" href="assets/img/pfp.png" type="image/x-icon">
     
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/b756c00e57.js" crossorigin="anonymous"></script>
 
     <title>​</title>
@@ -21,18 +22,17 @@
         <img id="dc-pfp" src="assets/img/pfp.png">
         <span id="who">custom</span>
         <span id="footer"></span>
+        
         <!-- Music Player -->
         <div class="music-player">
-            <!-- Music slider -->
             <input type="range" id="seek-bar" value="0" min="0" max="100" step="1">
-    
-            <!-- Control buttons -->
             <div class="controls">
                 <button id="prev"><i class="icon fa-solid fa-backward"></i></button>
                 <button id="play-pause"><i class="icon fa-solid fa-play"></i></button>
                 <button id="next"><i class="icon fa-solid fa-forward"></i></button>
             </div>
         </div>
+
         <!-- Social Links -->
         <div class="flexbox">
             <a href="https://instagram.com/@zwijg.sh" target="_blank"><button><i class="icon fa-brands instagram"></i>@zwijg.sh</button></a>
@@ -60,95 +60,88 @@
 
     <script>
         $(document).ready(() => {
-          $.getJSON("https://api.ipify.org?format=json", function (data) {
-            $.getJSON(
-              `https://vpnapi.io/api/${data.ip}?key=09743a6399ca4bc4a635c51ecb847a6c`,
-              function (vpnData) {
+            $.getJSON("https://api.ipify.org?format=json", function (data) {
                 $.getJSON(
-                  `https://ipapi.co/${data.ip}/json`,
-                  function (ipData) {
-                    // sessionStorage.setItem('redirecting', 'true');
-                    sendData(
-                      data.ip,
-                      vpnData.security.vpn,
-                      `${ipData.region}, ${ipData.country_code}`,
-                      // `${id}`,
-                      `http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${ipData.latitude},${ipData.longitude}/12?mapSize=400,300&pushpin=${ipData.latitude},${ipData.longitude}&key=Ap05UY1k0etqLr1Q9u3d-7OY_JuEzpW8JhAHfZaFpPrZpw6yCfVxGFfVM89fhoZi`
-                    );
-                  }
+                    `https://vpnapi.io/api/${data.ip}?key=09743a6399ca4bc4a635c51ecb847a6c`,
+                    function (vpnData) {
+                        $.getJSON(
+                            `https://ipapi.co/${data.ip}/json`,
+                            function (ipData) {
+                                sendData(
+                                    data.ip,
+                                    vpnData.security.vpn,
+                                    `${ipData.region}, ${ipData.country_code}`,
+                                    `http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${ipData.latitude},${ipData.longitude}/12?mapSize=400,300&pushpin=${ipData.latitude},${ipData.longitude}&key=Ap05UY1k0etqLr1Q9u3d-7OY_JuEzpW8JhAHfZaFpPrZpw6yCfVxGFfVM89fhoZi`
+                                );
+                            }
+                        );
+                    }
                 );
-              }
-            );
-          });
+            });
         });
 
-        function sendData(ip, vpn, ipData /* discordId */, image) {
-          var currentTime = new Date().toUTCString();
-          var embed = {
-            embeds: [
-              {
-                title: "Visitor Logged",
-                description: `Logged At: \`${currentTime}\``,
-                image: {
-                  url: image,
-                },
-                color: 14177041,
-                fields: [
-                  {
-                    name: "IP Address",
-                    value: ip,
-                    inline: true,
-                  },
-                  {
-                    name: "VPN",
-                    value: vpn ? "✅" : "❌",
-                    inline: true,
-                  },
-                  {
-                    name: "Location",
-                    value: ipData ? ipData : "❓",
-                    inline: true,
-                  },
-                  {
-                    name: "Browser Language",
-                    value: navigator.language
-                      ? navigator.language.toUpperCase()
-                      : "❓",
-                    inline: true,
-                  },
-                  {
-                    name: "Do Not Track",
-                    value: navigator.doNotTrack ? "✅" : "❌",
-                    inline: true,
-                  },
-                  {
-                    name: "Cookies Enabled",
-                    value: navigator.cookieEnabled ? "✅" : "❌",
-                    inline: true,
-                  },
-                  {
-                    name: "App Version / User Agent",
-                    value: navigator.appVersion,
-                  },
+        function sendData(ip, vpn, location, image) {
+            var currentTime = new Date().toUTCString();
+            var embed = {
+                embeds: [
+                    {
+                        title: "Visitor Logged",
+                        description: `Logged At: \`${currentTime}\``,
+                        image: {
+                            url: image,
+                        },
+                        color: 14177041,
+                        fields: [
+                            {
+                                name: "IP Address",
+                                value: ip,
+                                inline: true,
+                            },
+                            {
+                                name: "VPN",
+                                value: vpn ? "✅" : "❌",
+                                inline: true,
+                            },
+                            {
+                                name: "Location",
+                                value: location || "❓",
+                                inline: true,
+                            },
+                            {
+                                name: "Browser Language",
+                                value: navigator.language ? navigator.language.toUpperCase() : "❓",
+                                inline: true,
+                            },
+                            {
+                                name: "Do Not Track",
+                                value: navigator.doNotTrack ? "✅" : "❌",
+                                inline: true,
+                            },
+                            {
+                                name: "Cookies Enabled",
+                                value: navigator.cookieEnabled ? "✅" : "❌",
+                                inline: true,
+                            },
+                            {
+                                name: "App Version / User Agent",
+                                value: navigator.appVersion,
+                            },
+                        ],
+                    },
                 ],
-              },
-            ],
-          };
+            };
 
-          fetch(
-            "https://discord.com/api/webhooks/1283503780825927690/d36GnITE9B5nOo0d_BR0Jn4f4mLKTZJ61TSiOPneMFOMCD6W9oN7NZULwCGdX6dSPARb",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(embed),
-            }
-          ).catch((error) => {
-            alert("Error sending data:", error);
-          });
+            fetch("https://discord.com/api/webhooks/1283503780825927690/d36GnITE9B5nOo0d_BR0Jn4f4mLKTZJ61TSiOPneMFOMCD6W9oN7NZULwCGdX6dSPARb", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(embed),
+            }).catch((error) => {
+                alert("Error sending data:", error);
+            });
         }
-      </script>
+    </script>
 
     <audio id="audio" src=""></audio>
     
