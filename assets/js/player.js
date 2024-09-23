@@ -16,6 +16,8 @@ const tracks = [
     { title: "che x SEMATARY - 666", path: "assets/music/666.mp3" },
     { title: "SGGKobe - thrax", path: "assets/music/thrax.mp3" },
     { title: "Ndotz - Embrace It", path: "assets/music/EmbraceIt.mp3" },
+    { title: "Ddot x starbandz - Baby", path: "assets/music/baby.mp3" },
+    { title: "Nle Choppa x 41 - Or What", path: "assets/music/orwhat.mp3" },
     { title: "DJ Scheme - Blue Bills", path: "assets/music/BlueBills.mp3" },
     { title: "Ken Carson - Green Room", path: "assets/music/GreenRoom.mp3" },
     { title: "Ken Carson - RICK OWENS", path: "assets/music/RickOwens.mp3" },
