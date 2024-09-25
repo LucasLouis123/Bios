@@ -45,7 +45,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
-  color: lightgrey; /* Apply light grey color */
+  color: #FFFFFF; /* Body text in white for readability */
 }
 
 main {
@@ -82,7 +82,7 @@ img {
 }
 
 #footer {
-  color: lightgrey; /* Changed to light grey */
+  color: lightgrey; /* Footer stays light grey */
   font-size: clamp(12px, 8vw, 20px);
   margin-bottom: 10px;
   text-align: center;
@@ -108,7 +108,7 @@ button {
   border-radius: 5px;
   padding: 15px;
   font-size: clamp(18px, 2vw, 20px);
-  color: lightgrey; /* Changed to light grey */
+  color: white; /* Button text white for contrast */
   cursor: url("../cursors/16px_pointer.png"), pointer;
   font-family: monospace;
   margin: 5px;
@@ -118,7 +118,7 @@ button {
 
 a {
   text-decoration: none;
-  color: lightgrey; /* Changed to light grey */
+  color: #00ccff; /* Links in blue for better visibility */
   font-family: monospace;
 }
 
@@ -131,7 +131,7 @@ a {
   padding: 5px;
   font-style: normal;
   border: 2px dashed;
-  color: lightgrey; /* Changed to light grey */
+  color: lightgrey; /* Icon text stays light grey */
   cursor: url("../cursors/16px_pointer.png"), pointer;
   transition: all 0.2s ease-in-out;
   border-radius: 50%;
@@ -157,7 +157,7 @@ button:hover {
 .music-player button {
   background-color: var(--btn-bg);
   border: none;
-  color: lightgrey; /* Changed to light grey */
+  color: white; /* White text for button */
   padding: 10px 15px;
   margin: 10px 2px;
   border-radius: 5px;
@@ -178,7 +178,7 @@ button:hover {
   margin-top: 0px;
   margin-bottom: 15px;
   appearance: none;
-  background: lightgrey; /* Changed to light grey */
+  background: lightgrey; /* Light grey bar */
   height: 4px;
   border-radius: 5px;
   outline: none;
@@ -236,7 +236,7 @@ button:hover {
 
 #popup h2 {
   margin-top: 0;
-  color: lightgrey; /* Changed to light grey */
+  color: white; /* Popup title white for contrast */
   font-size: 20px;
   font-family: monospace;
   text-align: center;
@@ -257,7 +257,7 @@ button:hover {
   align-items: center;
   height: 80px; /* Make the blocks square */
   background-color: var(--btn-bg);
-  color: lightgrey; /* Changed to light grey */
+  color: white; /* Text white for readability */
   font-family: monospace;
   font-size: 18px;
   border-radius: 8px;
@@ -296,18 +296,12 @@ button:hover {
   background-color: var(--btn-bg);
   border: var(--btn-border);
   padding: 10px;
-  color: lightgrey; /* Changed to light grey */
+  color: white; /* White text for contrast */
   font-size: 18px;
   cursor: url("../cursors/16px_pointer.png"), pointer;
   border-radius: 5px;
-  transition: all 0.2s ease-in-out;
-  margin-top: 20px;
-  width: 100%;
-  text-align: center;
-  font-family: monospace;
 }
 
 #popup button:hover {
   background-color: var(--btn-hover-bg);
 }
-
