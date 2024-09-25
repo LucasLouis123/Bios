@@ -13,6 +13,7 @@ const tracks = [
     { title: "Chii Wvttz - Shoot Pt.2", path: "assets/music/music.mp3" },
     { title: "UglyEnd - Heyfever", path: "assets/music/Heyfever.mp3" },
     { title: "LeoStayTrill - Pink Lemonade", path: "assets/music/PinkLemonade.mp3" },
+    { title: "Ken Carson - mewtwo", path: "assets/music/mewtwo.mp3" },
     { title: "Tiakola - MANON B", path: "assets/music/MANONB.mp3" },
     { title: "Don Toliver - Bandit", path: "assets/music/Bandit.mp3" },
     { title: "Yeat - Shade", path: "assets/music/Shade.mp3" },
