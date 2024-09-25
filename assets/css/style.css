@@ -1,10 +1,12 @@
 @import url(fonts/icons.css);
+
 @import url(variables.css);
 
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -14,6 +16,7 @@
   0% {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -21,6 +24,7 @@
 
 * {
   margin: 0;
+
   cursor: url("../cursors/16px_default.png"), default;
 }
 
@@ -30,22 +34,35 @@ html {
 
 body {
   background-color: var(--bg-color);
+
   background-size: cover;
+
   background-position: center center;
+  
   background-repeat: no-repeat;
+  
   background-attachment: fixed;
+
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("../img/swat.gif");
+
   -webkit-animation-name: fadeIn;
+
   animation-name: fadeIn;
+
   animation-duration: 1s;
+
   font-family: monospace;
+
   user-select: none;
+
   -webkit-user-select: none;
+
   -moz-user-select: none;
+
   -ms-user-select: none;
+
   -o-user-select: none;
-  color: #FFFFFF; /* Body text in white for readability */
 }
 
 main {
@@ -68,29 +85,45 @@ main.fade-in {
 
 img {
   cursor: url("../cursors/16px_pointer.png"), pointer;
+
   object-fit: cover;
+
   border-radius: 50%;
+
   margin-bottom: 20px;
+
   border: var(--img-border);
+
   max-width: 150px;
 }
 
 #who {
   color: var(--text-color);
+
   font-size: clamp(25px, 8vw, 30px);
+
   margin-bottom: 10px;
 }
 
 #footer {
-  color: lightgrey; /* Footer stays light grey */
+  color: var(--text-color-light);
+
   font-size: clamp(12px, 8vw, 20px);
+
   margin-bottom: 10px;
+
   text-align: center;
+
   padding: 10px;
+
   position: relative;
+
   display: inline-block;
+
   opacity: 0;
+
   transition: opacity 0.5s ease-in-out;
+
   will-change: opacity;
 }
 
@@ -104,64 +137,99 @@ img {
 
 button {
   background-color: var(--btn-bg);
+
   border: var(--btn-border);
+
   border-radius: 5px;
+
   padding: 15px;
+
   font-size: clamp(18px, 2vw, 20px);
-  color: white; /* Button text white for contrast */
+
+  color: var(--btn-color);
+
   cursor: url("../cursors/16px_pointer.png"), pointer;
+
   font-family: monospace;
+
   margin: 5px;
+
   transition: all 0.2s ease-in-out;
+
   display: inline;
 }
 
 a {
   text-decoration: none;
-  color: #00ccff; /* Links in blue for better visibility */
+
+  color: var(--ahref-color);
+
   font-family: monospace;
 }
 
 .flexbox {
   display: flex;
+
   flex-direction: row;
 }
 
 .flexbox .icon {
   padding: 5px;
+
   font-style: normal;
+
   border: 2px dashed;
-  color: lightgrey; /* Icon text stays light grey */
+
+  color: var(--icon-color);
+
   cursor: url("../cursors/16px_pointer.png"), pointer;
+
   transition: all 0.2s ease-in-out;
+
   border-radius: 50%;
+
   background-color: var(--icon-bg);
+
   margin-right: 10px;
 }
 
 button:hover {
   background-color: var(--btn-hover-bg);
+
   border-radius: 5px;
+
   padding: 20px;
+
   font-size: clamp(20px, 2vw, 25px);
 }
 
 .music-player {
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
+
   margin-top: 5px;
 }
 
 .music-player button {
   background-color: var(--btn-bg);
+
   border: none;
-  color: white; /* White text for button */
+
+  color: var(--btn-color);
+
   padding: 10px 15px;
+
   margin: 10px 2px;
+
   border-radius: 5px;
+
   cursor: url("../cursors/16px_pointer.png"), pointer;
+
   font-size: 16px;
 }
 
@@ -175,22 +243,35 @@ button:hover {
 
 #seek-bar {
   width: 200px;
+
   margin-top: 0px;
+
   margin-bottom: 15px;
+
   appearance: none;
-  background: lightgrey; /* Light grey bar */
+
+  background: #333;
+
   height: 4px;
+
   border-radius: 5px;
+
   outline: none;
 }
 
 #seek-bar::-webkit-slider-thumb {
   appearance: none;
+
   width: 12px;
+
   height: 12px;
-  background: var(--text-color-light);
+
+  background: #b0b0b0; /* Changed light grey to #b0b0b0 */
+
   border-radius: 50%;
+
   cursor: url("../cursors/16px_pointer.png"), pointer;
+
   transition: background 0.3s ease-in-out;
 }
 
@@ -200,10 +281,15 @@ button:hover {
 
 #seek-bar::-moz-range-thumb {
   width: 12px;
+
   height: 12px;
-  background: var(--text-color-light);
+
+  background: #b0b0b0; /* Changed light grey to #b0b0b0 */
+
   border-radius: 50%;
+
   cursor: url("../cursors/16px_pointer.png"), pointer;
+
   transition: background 0.3s ease-in-out;
 }
 
@@ -212,96 +298,171 @@ button:hover {
 }
 
 /* Pop-up Styles */
+
 #popup {
-  display: none;
+  display: none; /* Hidden by default */
+
   position: fixed;
+
   top: 50%;
+
   left: 50%;
+
   transform: translate(-50%, -50%);
+
   background-color: var(--bg-color);
+
   padding: 20px;
+
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
   border-radius: 10px;
+
   z-index: 1000;
+
   width: 300px;
+
   height: 300px; /* Fixed height for the 3x3 grid */
+
   opacity: 0; /* Initially hidden */
+
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 #popup.show {
-  display: block;
+  display: block; /* Ensure the popup becomes visible */
+
   opacity: 1;
 }
 
 #popup h2 {
   margin-top: 0;
-  color: white; /* Popup title white for contrast */
+
+  color: var(--text-color);
+
   font-size: 20px;
+
   font-family: monospace;
+
   text-align: center;
 }
 
 #popup ul {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr); /* Create 3 columns */
+
   grid-gap: 10px; /* Space between blocks */
+
   list-style: none;
+
   padding: 0;
+
   margin: 20px 0 0 0; /* Add some spacing from the title */
 }
 
 #popup ul li {
   display: flex;
+
   justify-content: center;
+
   align-items: center;
+
   height: 80px; /* Make the blocks square */
+
   background-color: var(--btn-bg);
-  color: white; /* Text white for readability */
+
+  color: var(--text-color);
+
   font-family: monospace;
+
   font-size: 18px;
+
   border-radius: 8px;
+
   text-align: center;
+
   transition: background-color 0.3s ease;
+
   overflow: hidden; /* Ensure images don't overflow out of the blocks */
+
   position: relative; /* Make it possible to layer the text and image */
 }
 
 #popup ul li img {
   position: absolute;
+
   top: 0;
+
   left: 0;
+
   width: 100%; /* Fit the images to the block's size */
+
   height: 100%;
+
   object-fit: cover; /* Ensure the images maintain aspect ratio */
+
   border-radius: 8px;
+
   filter: opacity(60%);
+
   z-index: 0; /* Send the image behind the text */
 }
 
 #popup ul li .friend-name {
   position: relative;
+
   z-index: 1; /* Ensure the text is on top of the image */
-  color: white;
+
+  color: white; /* Text color */
+
   font-weight: bold;
+
   text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5); /* Make the text readable over the image */
 }
 
 #popup ul li:hover {
-  background-color: var(--btn-hover-bg);
+  background-color: var(--btn-hover-bg); /* Change background on hover */
 }
 
 /* Close Button */
+
 #popup button {
   background-color: var(--btn-bg);
+
   border: var(--btn-border);
+
   padding: 10px;
-  color: white; /* White text for contrast */
+
+  color: var(--btn-color);
+
   font-size: 18px;
+
   cursor: url("../cursors/16px_pointer.png"), pointer;
+
   border-radius: 5px;
+
+  transition: all 0.2s ease-in-out;
+
+  margin-top: 20px;
+
+  width: 100%;
+
+  text-align: center;
+
+  font-family: monospace;
 }
 
 #popup button:hover {
   background-color: var(--btn-hover-bg);
+
+  padding: 15px;
+
+  font-size: 20px;
+}
+
+/* Light grey color changes applied */
+:root {
+  --text-color-light: #b0b0b0; /* Updated the light grey variable */
+  --scroll-bar: #b0b0b0; /* Updated scrollbar color */
 }
