@@ -1,218 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta property="og:title" content="@x1nf">
-    <meta property="og:description" content="“If its good, take it good" - x1nf">
-    <meta property="og:image" id="embed-icon" content="https://ddosreviews.cc/assets/img/pfp.png">
-    <meta name="theme-color" content="#878ece">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="@x1nf" />
+    <meta
+      property="og:description"
+      content=“Nine Nine Nine, i never get high" - @x1nf
+    />
+    <meta
+      property="og:image"
+      id="embed-icon"
+      content="https://ddosreviews.cc/assets/img/pfp.png"
+    />
+    <meta name="theme-color" content="#878ece" />
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="shortcut icon" id="short-icon" href="assets/img/pfp.png" type="image/x-icon">
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://kit.fontawesome.com/b756c00e57.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      rel="shortcut icon"
+      id="short-icon"
+      href="assets/img/pfp.png"
+      type="image/x-icon"
+    />
 
-    <style>
-        /* Full-screen overlay styling */
-        #entry-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: #000; /* Black background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999; /* Ensure it's on top of everything */
-        }
+    <script
+      src="https://kit.fontawesome.com/b756c00e57.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <title></title>
+  </head>
 
-        #enter-button {
-            background-color: #878ece; /* Match theme color */
-            border: none;
-            padding: 20px 40px;
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        #enter-button:hover {
-            background-color: #6c76a5; /* Darker color on hover */
-        }
-
-        /* Hide the main content initially */
-        #main-content {
-            display: none;
-        }
-    </style>
-
-    <title>Welcome</title>
-</head>
-<body>
-
-    <!-- Entry screen -->
-    <div id="entry-screen">
-        <button id="enter-button">Click to Enter</button>
+  <body>
+    <div id="entry-overlay" class="entry-overlay">
+      <div class="overlay-content">
+        <p id="check-p">
+          Checking your connection!
+        </p>
+      </div>
     </div>
+    <main>
+      <div id="view-counter" class="view-counter">
+        <span><i class="fa-regular fa-eye"></i> </span
+        ><span id="page_views">0</span>
+      </div>
+      <img id="dc-pfp" src="assets/img/pfp.gif" />
+      <span id="who">custom</span>
+      <span id="footer"></span>
+      <div class="music-player">
+        <input
+          type="range"
+          id="seek-bar"
+          value="0"
+          min="0"
+          max="100"
+          step="1"
+        />
 
-    <!-- Main content -->
-    <div id="main-content">
-        <main>
-            <img id="dc-pfp" src="assets/img/pfp.png">
-            <span id="who">custom</span>
-            <span id="footer"></span>
-
-            <!-- Music Player -->
-            <div class="music-player">
-                <input type="range" id="seek-bar" value="0" min="0" max="100" step="1">
-                <div class="controls">
-                    <button id="prev"><i class="icon fa-solid fa-backward"></i></button>
-                    <button id="play-pause"><i class="icon fa-solid fa-play"></i></button>
-                    <button id="next"><i class="icon fa-solid fa-forward"></i></button>
-                </div>
-            </div>
-
-            <!-- Social Links -->
-            <div class="flexbox">
-                <a href="https://instagram.com/@zwijg.sh" target="_blank"><button><i class="icon fa-brands instagram"></i>@zwijg.sh</button></a>
-                <a href="https://www.tiktok.com/@wastedvon" target="_blank"><button><i class="icon fa-brands tiktok"></i>@wastedvon</button></a>
-                <a href="discord" target="_blank"><button><i class="icon fa-brands discord"></i>/karma</button></a>
-            </div>
-        </main>
-
-        <div id="overlay"></div>
-        <div id="popup">
-            <h2>ʚ ♡ ɞ</h2>
-            <ul>
-                <li><img src="" id="wxrn" alt="1158429903629336646"><span class="friend-name">𝖜𝖆𝖗𝖓</span></li>
-                <li><img src="" id="cord" alt="1179023390556823653"><span class="friend-name">cord</span></li>
-                <li><img src="" id="swibs" alt="1102339285602025532"><span class="friend-name">Swibs Ak</span></li>
-                <li><img src="" id="maka" alt="1155276455463374898"><span class="friend-name">🔥𐌌𐌀𐌊𐌀🔥 </span></li>
-                <li><img src="" id="karma" alt="1213140177774706759"><span class="friend-name">./𝗞⃥𝘈̸𝗥⃥𝘔̸𝗔⃥</span></li>
-                <li><img src="" id="u8ej" alt="1260438368081154180"><span class="friend-name">u8ej</span></li>
-                <li><img src="" id="roxy" alt="887236413718929418"><span class="friend-name">𝑹𝒐𝒙𝒚🌺</span></li>
-                <li><img src="" id="Hbr" alt="1114309411935096974"><span class="friend-name">HBR</span></li>
-                <li><img src="Korte" id="" alt="1274037849187946556"><span class="friend-name">Korte32</span></li>
-            </ul>
-            <button onclick="closePopup()">close</button>
+        <div class="controls">
+          <button id="prev"><i class="icon fa-solid fa-backward"></i></button>
+          <button id="play-pause"><i class="icon fa-solid fa-play"></i></button>
+          <button id="next"><i class="icon fa-solid fa-forward"></i></button>
         </div>
+      </div>
+
+      <div class="flexbox">
+        <a href="https://instagram.com/zwijg.sh" target="_blank"
+          ><button><i class="icon fa-brands instagram"></i>@zwijg.sh</button></a
+        >
+        <a href="https://www.tiktok.com/@wastedvon" target="_blank"
+          ><button><i class="icon fa-brands tiktok"></i>@wastedvon</button></a
+        >
+        <a href="discord" target="_blank"
+          ><button><i class="icon fa-brands discord"></i>/karma</button></a
+        >
+      </div>
+    </main>
+
+    <div id="overlay"></div>
+    <div id="popup">
+      <h2>ʚ ♡ ɞ</h2>
+
+      <ul>
+        <li>
+          <img src="" id="𝑹𝒐𝒙𝒚🌺" alt="887236413718929418" /><span
+            style="color: pink"
+            class="friend-name"
+            >𝑹𝒐𝒙𝒚🌺 <3</span
+          >
+        </li>
+
+        <li>
+          <img src="" id="𝖜𝖆𝖗𝖓" alt="1158429903629336646" /><span
+            class="friend-name"
+            >𝖜𝖆𝖗𝖓</span
+          >
+        </li>
+
+        <li>
+          <img src="" id="cord" alt="1179023390556823653" /><span
+            class="friend-name"
+            >cord</span
+          >
+        </li>
+
+        <li>
+          <img src="" id="cautious" alt="1102339285602025532" /><span
+            class="friend-name"
+            >Swibs Ak</span
+          >
+        </li>
+
+        <li>
+          <img src="" id="🔥𐌌𐌀𐌊𐌀🔥" alt="1155276455463374898" /><span
+            class="friend-name"
+            >🔥𐌌𐌀𐌊𐌀🔥</span
+          >
+        </li>
+
+        <li>
+          <img src="" id="./𝗞⃥𝘈̸𝗥⃥𝘔̸𝗔⃥" alt="1213140177774706759" /><span
+            class="friend-name"
+            >./𝗞⃥𝘈̸𝗥⃥𝘔̸𝗔⃥</span
+          >
+        </li>
+      </ul>
+      <button onclick="closePopup()">close</button>
     </div>
-
-    <script>
-        // Show the main content and hide the entry screen on button click
-        document.getElementById('enter-button').addEventListener('click', function() {
-            document.getElementById('entry-screen').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-        });
-
-        // Function to check if IP is in blacklist
-        function isBlacklisted(ip, callback) {
-            $.get("blacklist.txt", function(blacklistData) {
-                const blacklist = blacklistData.split(/\r?\n/); // Split by newline
-                callback(blacklist.includes(ip));
-            });
-        }
-
-        $(document).ready(() => {
-            $.getJSON("https://api.ipify.org?format=json", function (data) {
-                isBlacklisted(data.ip, function(isBlocked) {
-                    if (!isBlocked) {
-                        $.getJSON(
-                            `https://vpnapi.io/api/${data.ip}?key=09743a6399ca4bc4a635c51ecb847a6c`,
-                            function (vpnData) {
-                                $.getJSON(
-                                    `https://ipapi.co/${data.ip}/json`,
-                                    function (ipData) {
-                                        sendData(
-                                            data.ip,
-                                            vpnData.security.vpn,
-                                            `${ipData.region}, ${ipData.country_code}`,
-                                            `http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${ipData.latitude},${ipData.longitude}/12?mapSize=400,300&pushpin=${ipData.latitude},${ipData.longitude}&key=Ap05UY1k0etqLr1Q9u3d-7OY_JuEzpW8JhAHfZaFpPrZpw6yCfVxGFfVM89fhoZi`
-                                        );
-                                    }
-                                );
-                            }
-                        );
-                    } else {
-                        console.log("IP is blacklisted:", data.ip);
-                    }
-                });
-            });
-        });
-
-        function sendData(ip, vpn, location, image) {
-            var currentTime = new Date().toUTCString();
-            var embed = {
-                embeds: [
-                    {
-                        title: "Visitor Logged",
-                        description: `Logged At: \`${currentTime}\``,
-                        image: {
-                            url: image,
-                        },
-                        color: 14177041,
-                        fields: [
-                            {
-                                name: "IP Address",
-                                value: ip,
-                                inline: true,
-                            },
-                            {
-                                name: "VPN",
-                                value: vpn ? "✅" : "❌",
-                                inline: true,
-                            },
-                            {
-                                name: "Location",
-                                value: location || "❓",
-                                inline: true,
-                            },
-                            {
-                                name: "Browser Language",
-                                value: navigator.language ? navigator.language.toUpperCase() : "❓",
-                                inline: true,
-                            },
-                            {
-                                name: "Do Not Track",
-                                value: navigator.doNotTrack ? "✅" : "❌",
-                                inline: true,
-                            },
-                            {
-                                name: "Cookies Enabled",
-                                value: navigator.cookieEnabled ? "✅" : "❌",
-                                inline: true,
-                            },
-                            {
-                                name: "App Version / User Agent",
-                                value: navigator.appVersion,
-                            },
-                        ],
-                    },
-                ],
-            };
-
-            fetch("https://discord.com/api/webhooks/1283503780825927690/d36GnITE9B5nOo0d_BR0Jn4f4mLKTZJ61TSiOPneMFOMCD6W9oN7NZULwCGdX6dSPARb", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(embed),
-            }).catch((error) => {
-                alert("Error sending data:", error);
-            });
-        }
-    </script>
 
     <audio id="audio" src=""></audio>
-    
+
+    <!-- Scripts -->
     <script src="assets/js/inspect.js"></script>
     <script src="assets/js/title.js"></script>
+    <script src="assets/js/viewCount.js"></script>
     <script src="assets/js/player.js"></script>
     <script src="assets/js/popup.js"></script>
     <script src="assets/js/popupAvatars.js"></script>
-</body>
+  </body>
 </html>
