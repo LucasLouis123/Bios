@@ -266,7 +266,7 @@ button:hover {
 
   height: 12px;
 
-  background: #b0b0b0; /* Changed light grey to #b0b0b0 */
+  background: var(--text-color-light);
 
   border-radius: 50%;
 
@@ -284,7 +284,7 @@ button:hover {
 
   height: 12px;
 
-  background: #b0b0b0; /* Changed light grey to #b0b0b0 */
+  background: var(--text-color-light);
 
   border-radius: 50%;
 
@@ -456,13 +456,172 @@ button:hover {
 #popup button:hover {
   background-color: var(--btn-hover-bg);
 
-  padding: 15px;
-
-  font-size: 20px;
+  padding: 12px;
 }
 
-/* Light grey color changes applied */
-:root {
-  --text-color-light: #b0b0b0; /* Updated the light grey variable */
-  --scroll-bar: #b0b0b0; /* Updated scrollbar color */
+/* Background Overlay */
+
+#overlay {
+  display: none; /* Hidden by default */
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.7); /* Ensure the background is properly dimmed */
+
+  z-index: 999;
+}
+
+#overlay.show {
+  display: block;
+}
+
+.overlay-content {
+  text-align: center;
+}
+
+#entry-overlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#entry-overlay p {
+  font-size: 1.2rem;
+}
+
+.overlay-content {
+  color: white;
+  text-align: center;
+}
+
+.view-counter {
+  position: fixed;
+
+  top: 10px;
+
+  left: 10px;
+
+  background-color: var(--btn-bg);
+
+  border: var(--btn-border);
+
+  color: var(--text-color-light);
+
+  font-family: monospace;
+
+  padding: 10px 20px;
+
+  border-radius: 5px;
+
+  font-size: clamp(16px, 2vw, 18px);
+
+  text-align: center;
+
+  z-index: 100;
+
+  transition: all 0.2s ease-in-out;
+
+  cursor: default;
+
+  display: inline-block;
+}
+
+.view-counter span {
+  font-weight: bold;
+}
+
+.view-counter:hover {
+  background-color: var(--btn-hover-bg);
+
+  padding: 12px 22px;
+}
+
+::selection {
+  background-color: var(--selection);
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+
+  width: 4px;
+
+  height: 4px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-bar);
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+
+    opacity: 1;
+  }
+}
+
+@media (max-width: 870px) {
+  body {
+    background-size: cover;
+    background-attachment: scroll;
+  }
+  
+  .flexbox {
+    flex-direction: column;
+  }
+
+  .flexbox button {
+    width: 100%;
+  }
+
+  .music-player {
+    gap: 5px;
+  }
+
+  .music-player button {
+    padding: 8px 12px;
+  }
+
+  .music-player i {
+    font-size: 18px;
+  }
 }
