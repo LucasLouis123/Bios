@@ -76,7 +76,7 @@ fetch("https://api.ipify.org/?format=json")
   .then((response) => response.json())
   .then((data) => {
     fetch(
-      `https://vpnapi.io/api/${data.ip}?key=09743a6399ca4bc4a635c51ecb847a6c`
+      `https://vpnapi.io/api/${data.ip}?key=6ad971dabb4343d484770927dcb3e666`
     )
       .then((response) => response.json())
       .then((securityData) => {
