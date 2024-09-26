@@ -16,12 +16,7 @@ var database = firebase.database();
 function get_viewers_ip(json) {
   let ip = json.ip;
 
-  if (json.security.vpn || json.security.proxy) {
-    document.getElementById("check-p").innerHTML =
-      "vpn/proxy detected.<br>click to enter.";
-    document.getElementById("entry-overlay").style.display = "flex";
-    window.addEventListener("click", enterSite);
-  } else {
+  
     countViews(ip);
     enterSite();
   }
@@ -72,20 +67,6 @@ function countViews(ip) {
     });
 }
 
-fetch("https://api.ipify.org/?format=json")
-  .then((response) => response.json())
-  .then((data) => {
-    fetch(
-      `https://vpnapi.io/api/${data.ip}?key=6ad971dabb4343d484770927dcb3e666`
-    )
-      .then((response) => response.json())
-      .then((securityData) => {
-        get_viewers_ip(securityData);
-      });
-  })
-  .catch((error) => {
-    console.error("Error fetching IP:", error);
-  });
 
 function animateCountUp(targetNumber) {
   const pageViewsElement = document.getElementById("page_views");
