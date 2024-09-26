@@ -9,6 +9,9 @@ const firebaseConfig = {
   measurementId: "G-828VWJMZXJ",
 };
 
+// Define your fake viewer count here
+const FAKE_VIEWER_COUNT = 112; // Change this value to whatever fake count you want
+
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
@@ -67,8 +70,8 @@ function countViews(ip) {
     .child("page_views")
     .on("value", function (snapshot) {
       views = snapshot.numChildren();
-      // Generate a fake viewer count by adding a significant number to the actual count
-      const fakeViewerCount = views + Math.floor(Math.random() * 1000) + 500; // Adjust range as needed
+      // Use the predefined fake viewer count
+      const fakeViewerCount = views + FAKE_VIEWER_COUNT; // Add the fake viewer count
       animateCountUp(fakeViewerCount);
     });
 }
