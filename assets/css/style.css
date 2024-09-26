@@ -38,13 +38,12 @@ body {
   background-size: cover;
 
   background-position: center center;
-  
+
   background-repeat: no-repeat;
-  
+
   background-attachment: fixed;
 
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("../img/swat.gif");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
 
   -webkit-animation-name: fadeIn;
 
@@ -241,6 +240,57 @@ button:hover {
   font-size: 18px;
 }
 
+#lyrics-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-color);
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 1000;
+  width: 300px;
+  max-height: 80%;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#lyrics-popup.show {
+  display: block;
+  opacity: 1;
+}
+
+#lyrics-content {
+  color: var(--text-color);
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Close Button */
+#lyrics-popup button {
+  background-color: var(--btn-bg);
+  border: var(--btn-border);
+  padding: 10px;
+  color: var(--btn-color);
+  font-size: 18px;
+  cursor: url("../cursors/16px_pointer.png"), pointer;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  font-family: monospace;
+}
+
+#lyrics-popup button:hover {
+  background-color: var(--btn-hover-bg);
+  padding: 12px;
+}
+
 #seek-bar {
   width: 200px;
 
@@ -276,7 +326,7 @@ button:hover {
 }
 
 #seek-bar::-webkit-slider-thumb:hover {
-  background: #2500cc;
+  background: var(--accent-color);
 }
 
 #seek-bar::-moz-range-thumb {
@@ -294,13 +344,11 @@ button:hover {
 }
 
 #seek-bar::-moz-range-thumb:hover {
-  background: #8100cc;
+  background: var(--accent-color);
 }
 
-/* Pop-up Styles */
-
 #popup {
-  display: none; /* Hidden by default */
+  display: none;
 
   position: fixed;
 
@@ -425,8 +473,6 @@ button:hover {
   background-color: var(--btn-hover-bg); /* Change background on hover */
 }
 
-/* Close Button */
-
 #popup button {
   background-color: var(--btn-bg);
 
@@ -462,7 +508,7 @@ button:hover {
 /* Background Overlay */
 
 #overlay {
-  display: none; /* Hidden by default */
+  display: none;
 
   position: fixed;
 
@@ -474,7 +520,7 @@ button:hover {
 
   height: 100%;
 
-  background: rgba(0, 0, 0, 0.7); /* Ensure the background is properly dimmed */
+  background: rgba(0, 0, 0, 0.7);
 
   z-index: 999;
 }
@@ -507,6 +553,72 @@ button:hover {
 .overlay-content {
   color: white;
   text-align: center;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#volume-button {
+  position: relative;
+  z-index: 2;
+}
+
+#volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  width: 120px;
+  background: var(--btn-border-color);
+  border-radius: 5px;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: translateY(20px);
+  opacity: 0;
+  visibility: hidden;
+}
+
+#volume-slider.show {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#volume-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#volume-slider::-moz-range-track {
+  background: var(--btn-border-color);
+  height: 8px;
+}
+
+#volume-slider:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .view-counter {
@@ -604,7 +716,15 @@ button:hover {
     background-size: cover;
     background-attachment: scroll;
   }
-  
+
+  button#lyrics {
+    display: none;
+  }
+
+  button#volume-button {
+    display: none;
+  }
+
   .flexbox {
     flex-direction: column;
   }
