@@ -25,7 +25,7 @@
 * {
   margin: 0;
 
-  cursor: url("../New folder/16px_default.png"), default;
+  cursor: url("../cursors/16px_default.png"), default;
 }
 
 html {
@@ -84,7 +84,7 @@ main.fade-in {
 }
 
 img {
-  cursor: url("../New folder/16px_pointer.png"), pointer;
+  cursor: url("../cursors/16px_pointer.png"), pointer;
 
   object-fit: cover;
 
