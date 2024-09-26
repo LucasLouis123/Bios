@@ -233,10 +233,8 @@ lyricsBtn.addEventListener("click", () => {
           <title>${tracks[currentTrack].title} | Lyrics</title>
           <style>
             body {
-              background-color: var(--bg-color); /* Use variable from CSS */
               font-family: monospace;
               padding: 20px;
-              color: var(--text-color);
             }
             a {
               color: var(--ahref-color);
