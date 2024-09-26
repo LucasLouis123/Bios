@@ -10,8 +10,6 @@ const volumeButton = document.getElementById("volume-button");
 
 const defaultFooterText = "〤 CutNation 〤";
 
-const defaultFooterText = '〤 CutNation 〤';
-
 const tracks = [
     { title: "Destroy Lonely - if looks could kill", path: "assets/music/iflookscouldkill.mp3" },
     { title: "Ken Carson - Succubus", path: "assets/music/Succubus.mp3" },
