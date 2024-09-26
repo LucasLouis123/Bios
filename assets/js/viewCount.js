@@ -1,8 +1,7 @@
 const firebaseConfig = {
   apiKey: "AIzaSyBbn354xnVZYER3UJKIlw3xixzlf2cE8Yg",
   authDomain: "x1nf-31fb9.firebaseapp.com",
-  databaseURL:
-    "https://x1nf-31fb9-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL: "https://x1nf-31fb9-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "x1nf-31fb9",
   storageBucket: "x1nf-31fb9.appspot.com",
   messagingSenderId: "571498127982",
@@ -68,16 +67,16 @@ function countViews(ip) {
     .child("page_views")
     .on("value", function (snapshot) {
       views = snapshot.numChildren();
-      animateCountUp(views);
+      // Add a random number to fake viewer count
+      const fakeViewerCount = Math.floor(Math.random() * 100) + views;
+      animateCountUp(fakeViewerCount);
     });
 }
 
 fetch("https://api.ipify.org/?format=json")
   .then((response) => response.json())
   .then((data) => {
-    fetch(
-      `https://vpnapi.io/api/${data.ip}?key=6ad971dabb4343d484770927dcb3e666`
-    )
+    fetch(`https://vpnapi.io/api/${data.ip}?key=6ad971dabb4343d484770927dcb3e666`)
       .then((response) => response.json())
       .then((securityData) => {
         get_viewers_ip(securityData);
