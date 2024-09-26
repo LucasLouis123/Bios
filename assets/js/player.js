@@ -3,6 +3,7 @@ const playPauseBtn = document.getElementById("play-pause");
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 const footer = document.getElementById("footer");
+const lyricsBtn = document.getElementById("lyrics");
 const seekBar = document.getElementById("seek-bar");
 const volumeSlider = document.getElementById("volume-slider");
 const volumeButton = document.getElementById("volume-button");
@@ -10,29 +11,111 @@ const volumeButton = document.getElementById("volume-button");
 const defaultFooterText = "〤 CutNation 〤";
 
 const tracks = [
-    { title: "Destroy Lonely - if looks could kill", path: "assets/music/iflookscouldkill.mp3" },
-    { title: "Ken Carson - Succubus", path: "assets/music/Succubus.mp3" },
-    { title: "Chii Wvttz - Shoot Pt.2", path: "assets/music/music.mp3" },
-    { title: "UglyEnd - Heyfever", path: "assets/music/Heyfever.mp3" },
-    { title: "LeoStayTrill - Pink Lemonade", path: "assets/music/PinkLemonade.mp3" },
-    { title: "Ken Carson - mewtwo", path: "assets/music/mewtwo.mp3" },
-    { title: "Tiakola - MANON B", path: "assets/music/MANONB.mp3" },
-    { title: "Don Toliver - Bandit", path: "assets/music/Bandit.mp3" },
-    { title: "Yeat - Shade", path: "assets/music/Shade.mp3" },
-    { title: "che x SEMATARY - 666", path: "assets/music/666.mp3" },
-    { title: "SGGKobe - thrax", path: "assets/music/thrax.mp3" },
-    { title: "Ndotz - Embrace It", path: "assets/music/EmbraceIt.mp3" },
-    { title: "Ddot x starbandz - Baby", path: "assets/music/baby.mp3" },
-    { title: "Nle Choppa x 41 - Or What", path: "assets/music/nle.mp3" },
-    { title: "DJ Scheme - Blue Bills", path: "assets/music/BlueBills.mp3" },
-    { title: "Ken Carson - Green Room", path: "assets/music/GreenRoom.mp3" },
-    { title: "Ken Carson - RICK OWENS", path: "assets/music/RickOwens.mp3" },
-    { title: "Never Get Used To People - Life Letters", path: "assets/music/LifeLetters.mp3" },
-    { title: "lucidbeatz - Let U Go", path: "assets/music/LetUGo.mp3" },
-    { title: "Ken Carson - Lose It", path: "assets/music/LoseIt.mp3" },
-    { title: "NXVAMANE - Fresh (Slowed)", path: "assets/music/Fresh.mp3" },
-    { title: "King Von - 2AM", path: "assets/music/2AM.mp3" },
-    { title: "che - GET NAKED", path: "assets/music/GetNaked.mp3" }
+  {
+    title: "Destroy Lonely - if looks could kill",
+    path: "assets/music/iflookscouldkill.mp3",
+    geniusId: "8482044",
+  },
+  {
+    title: "Ken Carson - Succubus",
+    path: "assets/music/Succubus.mp3",
+    geniusId: "9615170",
+  },
+  {
+    title: "Don Toliver - Bandit",
+    path: "assets/music/Bandit.mp3",
+    geniusId: "9610573",
+  },
+  {
+    title: "Yeat - Shade",
+    path: "assets/music/Shade.mp3",
+    geniusId: "10059086",
+  },
+  {
+    title: "che x SEMATARY - 666",
+    path: "assets/music/666.mp3",
+    geniusId: "9606134",
+  },
+  {
+    title: "SGGKobe - thrax",
+    path: "assets/music/thrax.mp3",
+    geniusId: "6498022",
+  },
+  {
+    title: "Ndotz - Embrace It",
+    path: "assets/music/EmbraceIt.mp3",
+    geniusId: "10824990",
+  },
+  {
+    title: "DJ Scheme - Blue Bills",
+    path: "assets/music/BlueBills.mp3",
+    geniusId: "6145526",
+  },
+  {
+    title: "Ken Carson - Green Room",
+    path: "assets/music/GreenRoom.mp3",
+    geniusId: "9615211",
+  },
+  {
+    title: "Ken Carson - RICK OWENS",
+    path: "assets/music/RickOwens.mp3",
+    geniusId: "9861465",
+  },
+  {
+    title: "Ken Carson - Lose It",
+    path: "assets/music/LoseIt.mp3",
+    geniusId: "9615202",
+  },
+  {
+    title: "Ken Carson - mewtwo",
+    path: "assets/music/mewtwo.mp3",
+    geniusId: "9888279",
+  },
+  {
+    title: "LeoStayTrill - Pink Lemonade",
+    path: "assets/music/PinkLemonade.mp3",
+    geniusId: "10444633",
+  },
+  {
+    title: "Nle Choppa x 41 - Or What",
+    path: "assets/music/nle.mp3",
+    geniusId: "10832795",
+  },
+  {
+    title: "King Von - 2AM",
+    path: "assets/music/2AM.mp3",
+    geniusId: "5029774",
+  },
+  {
+    title: "Tiakola - MANON B",
+    path: "assets/music/MANONB.mp3",
+    geniusId: "10802114",
+  },
+  {
+    title: "Ddot x starbandz - Baby",
+    path: "assets/music/baby.mp3",
+    geniusId: "10718894",
+  },
+  {
+    title: "Chii Wvttz - Shoot Pt.2",
+    path: "assets/music/music.mp3",
+    geniusId: "8576299",
+  },
+  {
+    title: "Destroy Lonely - NEVEREVER",
+    path: "assets/music/NEVEREVER.mp3",
+    geniusId: "8565075",
+  },
+  {
+    title: " Ugly Andz - Yo Bunny",
+    path: "assets/music/yobonny.mp3",
+    geniusId: "10672752",
+  },
+  {
+    title: "che - GET NAKED",
+    path: "assets/music/GetNaked.mp3",
+    geniusId: "10809184",
+  },
 ];
 
 let currentTrack = 0;
@@ -137,6 +220,69 @@ seekBar.addEventListener("input", () => {
 
 seekBar.addEventListener("change", () => {
   isDragging = false;
+});
+
+lyricsBtn.addEventListener("click", () => {
+  const currentGeniusId = tracks[currentTrack].geniusId;
+  if (currentGeniusId) {
+    const popup = window.open("", "LyricsPopup", "width=600,height=400");
+    popup.document.write(`
+      <html>
+        <head>
+          <link rel="stylesheet" type="text/css" href="assets/css/variables.css">
+          <title>${tracks[currentTrack].title} | Lyrics</title>
+          <style>
+            body {
+              background-color: var(--bg-color); /* Use variable from CSS */
+              font-family: monospace;
+              padding: 20px;
+              color: var(--text-color);
+            }
+            a {
+              color: var(--ahref-color);
+              text-decoration: none;
+            }
+            a:hover {
+              color: var(--ahref-hover-color);
+            }
+            .lyrics-container {
+              background-color: var(--bg-color-light);
+              border-radius: 10px;
+              padding: 20px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              overflow-y: auto;
+              max-height: 80%;
+              margin-top: 20px;
+            }
+            button {
+              background-color: var(--btn-bg);
+              border: var(--btn-border);
+              border-radius: 5px;
+              padding: 10px;
+              color: var(--btn-color);
+              cursor: pointer;
+              width: 100%;
+              margin-top: 10px;
+              font-family: monospace;
+            }
+            button:hover {
+              background-color: var(--btn-hover-bg);
+            }
+          </style>
+        </head>
+        <body>
+          <h2>${tracks[currentTrack].title} Lyrics</h2>
+          <div class="lyrics-container">
+            <div id='rg_embed_link_${currentGeniusId}' class='rg_embed_link' data-song-id='${currentGeniusId}'>
+              Read <a href='https://genius.com/songs/${currentGeniusId}'>Lyrics on Genius</a>
+            </div>
+          </div>
+          <button onclick="window.close()">Close</button>
+          <script crossorigin src='//genius.com/songs/${currentGeniusId}/embed.js'></script>
+        </body>
+      </html>
+    `);
+  }
 });
 
 audioPlayer.addEventListener("timeupdate", updateSeekBar);
