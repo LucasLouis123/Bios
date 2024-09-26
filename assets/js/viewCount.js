@@ -17,7 +17,7 @@ function get_viewers_ip(json) {
 
   if (json.security.vpn || json.security.proxy) {
     document.getElementById("check-p").innerHTML =
-      "vpn/proxy detected.<br>click to enter.";
+      "VPN/proxy detected.<br>Click to enter.";
     document.getElementById("entry-overlay").style.display = "flex";
     window.addEventListener("click", enterSite);
   } else {
@@ -67,8 +67,8 @@ function countViews(ip) {
     .child("page_views")
     .on("value", function (snapshot) {
       views = snapshot.numChildren();
-      // Add a random number to fake viewer count
-      const fakeViewerCount = Math.floor(Math.random() * 100) + views;
+      // Generate a fake viewer count by adding a significant number to the actual count
+      const fakeViewerCount = views + Math.floor(Math.random() * 1000) + 500; // Adjust range as needed
       animateCountUp(fakeViewerCount);
     });
 }
