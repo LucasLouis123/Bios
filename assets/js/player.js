@@ -3,7 +3,6 @@ const playPauseBtn = document.getElementById("play-pause");
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 const footer = document.getElementById("footer");
-const lyricsBtn = document.getElementById("lyrics");
 const seekBar = document.getElementById("seek-bar");
 const volumeSlider = document.getElementById("volume-slider");
 const volumeButton = document.getElementById("volume-button");
