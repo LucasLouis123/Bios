@@ -42,7 +42,7 @@ function countViews(ip) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': 'YOUR_API_KEY',
+      'x-api-key': 'feC1ftqAcNp9hbY1mKQzWowTrraGjKEuQuioUmYfcMp3Tdk0ZBS38gXRSfVbp2H2',
     },
     body: JSON.stringify({ ip }),
   })
