@@ -1,4 +1,5 @@
-const FAKE_VIEWER_COUNT = 666; // Change this value to adjust the fake viewer count
+// Define a constant for fake viewer count
+const FAKE_VIEWER_COUNT = 666; // You can change this to whatever number you want
 
 function get_viewers_ip(json) {
   let ip = json.ip;
@@ -55,13 +56,14 @@ function countViews(ip) {
   .then(data => {
     const actualViews = data.views;
     const totalViews = actualViews + FAKE_VIEWER_COUNT; // Add fake viewer count
-    animateCountUp(totalViews); // Use the total views in the animation
+    updateViewCount(totalViews); // Use the total views for display
   })
   .catch(error => {
     console.error("Error recording view:", error);
   });
 }
 
+// Fetch IP and pass it for VPN/Proxy check
 fetch("https://api.ipify.org/?format=json")
   .then((response) => response.json())
   .then((data) => {
@@ -77,6 +79,13 @@ fetch("https://api.ipify.org/?format=json")
     console.error("Error fetching IP:", error);
   });
 
+// Function to update the viewer count directly
+function updateViewCount(totalViews) {
+  const pageViewsElement = document.getElementById("page_views");
+  pageViewsElement.innerHTML = totalViews; // Set the total views directly
+}
+
+// Optional: If you want to keep the animated count-up effect
 function animateCountUp(targetNumber) {
   const pageViewsElement = document.getElementById("page_views");
   const currentNumber = parseInt(pageViewsElement.innerHTML);
