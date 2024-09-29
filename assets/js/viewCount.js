@@ -1,26 +1,11 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyBbn354xnVZYER3UJKIlw3xixzlf2cE8Yg",
-  authDomain: "x1nf-31fb9.firebaseapp.com",
-  databaseURL: "https://x1nf-31fb9-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "x1nf-31fb9",
-  storageBucket: "x1nf-31fb9.appspot.com",
-  messagingSenderId: "571498127982",
-  appId: "1:571498127982:web:9b7263698bf077d1567c7f",
-  measurementId: "G-828VWJMZXJ",
-};
-
-// Define your fake viewer count here
 const FAKE_VIEWER_COUNT = 638; // Change this value to whatever fake count you want
-
-firebase.initializeApp(firebaseConfig);
-var database = firebase.database();
 
 function get_viewers_ip(json) {
   let ip = json.ip;
 
   if (json.security.vpn || json.security.proxy) {
     document.getElementById("check-p").innerHTML =
-      "VPN/proxy detected.<br>Click to enter.";
+      "vpn/proxy detected.<br>click to enter.";
     document.getElementById("entry-overlay").style.display = "flex";
     window.addEventListener("click", enterSite);
   } else {
@@ -53,33 +38,35 @@ function enterSite() {
 }
 
 function countViews(ip) {
-  var views;
-  var ip_to_string = ip.toString().replace(/\./g, "-");
-
-  firebase
-    .database()
-    .ref()
-    .child("page_views/" + ip_to_string)
-    .set({
-      viewers_ip: ip,
-    });
-
-  firebase
-    .database()
-    .ref()
-    .child("page_views")
-    .on("value", function (snapshot) {
-      views = snapshot.numChildren();
-      // Use the predefined fake viewer count
-      const fakeViewerCount = views + FAKE_VIEWER_COUNT; // Add the fake viewer count
-      animateCountUp(fakeViewerCount);
-    });
+  fetch('http://api.wxrn.lol/api/views', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': 'YOUR_API_KEY',
+    },
+    body: JSON.stringify({ ip }),
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    const views = data.views;
+    animateCountUp(views);
+  })
+  .catch(error => {
+    console.error("Error recording view:", error);
+  });
 }
 
 fetch("https://api.ipify.org/?format=json")
   .then((response) => response.json())
   .then((data) => {
-    fetch(`https://vpnapi.io/api/${data.ip}?key=6ad971dabb4343d484770927dcb3e666`)
+    fetch(
+      `https://vpnapi.io/api/${data.ip}?key=0840c7c180ee4f9a81d591f222762774`
+    )
       .then((response) => response.json())
       .then((securityData) => {
         get_viewers_ip(securityData);
@@ -92,18 +79,18 @@ fetch("https://api.ipify.org/?format=json")
 function animateCountUp(targetNumber) {
   const pageViewsElement = document.getElementById("page_views");
   const currentNumber = parseInt(pageViewsElement.innerHTML);
-  const increment = Math.ceil((targetNumber - currentNumber) / 100); // Increment step
-  const duration = 1000; // Duration of the animation in milliseconds
-  const steps = Math.ceil(duration / 50); // Number of steps for the animation
+  const increment = Math.ceil((targetNumber - currentNumber) / 100);
+  const duration = 1000;
+  const steps = Math.ceil(duration / 50);
   let count = currentNumber;
 
   const interval = setInterval(() => {
     count += increment;
     if (increment > 0 && count >= targetNumber) {
-      count = targetNumber; // Stop at target number
+      count = targetNumber;
       clearInterval(interval);
     } else if (increment < 0 && count <= targetNumber) {
-      count = targetNumber; // Stop at target number
+      count = targetNumber;
       clearInterval(interval);
     }
     pageViewsElement.innerHTML = count;
