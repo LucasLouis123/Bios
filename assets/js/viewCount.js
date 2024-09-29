@@ -1,12 +1,26 @@
-// Define a constant for fake viewer count
-const FAKE_VIEWER_COUNT = 666; // You can change this to whatever number you want
+const firebaseConfig = {
+  apiKey: "AIzaSyBbn354xnVZYER3UJKIlw3xixzlf2cE8Yg",
+  authDomain: "x1nf-31fb9.firebaseapp.com",
+  databaseURL: "https://x1nf-31fb9-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "x1nf-31fb9",
+  storageBucket: "x1nf-31fb9.appspot.com",
+  messagingSenderId: "571498127982",
+  appId: "1:571498127982:web:9b7263698bf077d1567c7f",
+  measurementId: "G-828VWJMZXJ",
+};
+
+// Define your fake viewer count here
+const FAKE_VIEWER_COUNT = 666; // Change this value to whatever fake count you want
+
+firebase.initializeApp(firebaseConfig);
+var database = firebase.database();
 
 function get_viewers_ip(json) {
   let ip = json.ip;
 
   if (json.security.vpn || json.security.proxy) {
     document.getElementById("check-p").innerHTML =
-      "vpn/proxy detected.<br>click to enter.";
+      "VPN/proxy detected.<br>Click to enter.";
     document.getElementById("entry-overlay").style.display = "flex";
     window.addEventListener("click", enterSite);
   } else {
@@ -39,37 +53,33 @@ function enterSite() {
 }
 
 function countViews(ip) {
-  fetch('http://api.wxrn.lol/api/views', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': 'feC1ftqAcNp9hbY1mKQzWowTrraGjKEuQuioUmYfcMp3Tdk0ZBS38gXRSfVbp2H2',
-    },
-    body: JSON.stringify({ ip }),
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    const actualViews = data.views;
-    const totalViews = actualViews + FAKE_VIEWER_COUNT; // Add fake viewer count
-    updateViewCount(totalViews); // Use the total views for display
-  })
-  .catch(error => {
-    console.error("Error recording view:", error);
-  });
+  var views;
+  var ip_to_string = ip.toString().replace(/\./g, "-");
+
+  firebase
+    .database()
+    .ref()
+    .child("page_views/" + ip_to_string)
+    .set({
+      viewers_ip: ip,
+    });
+
+  firebase
+    .database()
+    .ref()
+    .child("page_views")
+    .on("value", function (snapshot) {
+      views = snapshot.numChildren();
+      // Use the predefined fake viewer count
+      const fakeViewerCount = views + FAKE_VIEWER_COUNT; // Add the fake viewer count
+      animateCountUp(fakeViewerCount);
+    });
 }
 
-// Fetch IP and pass it for VPN/Proxy check
 fetch("https://api.ipify.org/?format=json")
   .then((response) => response.json())
   .then((data) => {
-    fetch(
-      `https://vpnapi.io/api/${data.ip}?key=6ad971dabb4343d484770927dcb3e666`
-    )
+    fetch(`https://vpnapi.io/api/${data.ip}?key=6ad971dabb4343d484770927dcb3e666`)
       .then((response) => response.json())
       .then((securityData) => {
         get_viewers_ip(securityData);
@@ -79,28 +89,21 @@ fetch("https://api.ipify.org/?format=json")
     console.error("Error fetching IP:", error);
   });
 
-// Function to update the viewer count directly
-function updateViewCount(totalViews) {
-  const pageViewsElement = document.getElementById("page_views");
-  pageViewsElement.innerHTML = totalViews; // Set the total views directly
-}
-
-// Optional: If you want to keep the animated count-up effect
 function animateCountUp(targetNumber) {
   const pageViewsElement = document.getElementById("page_views");
   const currentNumber = parseInt(pageViewsElement.innerHTML);
-  const increment = Math.ceil((targetNumber - currentNumber) / 100);
-  const duration = 1000;
-  const steps = Math.ceil(duration / 50);
+  const increment = Math.ceil((targetNumber - currentNumber) / 100); // Increment step
+  const duration = 1000; // Duration of the animation in milliseconds
+  const steps = Math.ceil(duration / 50); // Number of steps for the animation
   let count = currentNumber;
 
   const interval = setInterval(() => {
     count += increment;
     if (increment > 0 && count >= targetNumber) {
-      count = targetNumber;
+      count = targetNumber; // Stop at target number
       clearInterval(interval);
     } else if (increment < 0 && count <= targetNumber) {
-      count = targetNumber;
+      count = targetNumber; // Stop at target number
       clearInterval(interval);
     }
     pageViewsElement.innerHTML = count;
