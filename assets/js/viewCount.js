@@ -1,4 +1,4 @@
-const FAKE_VIEWER_COUNT = 638; // Change this value to whatever fake count you want
+const FAKE_VIEWER_COUNT = 666; // Change this value to adjust the fake viewer count
 
 function get_viewers_ip(json) {
   let ip = json.ip;
@@ -53,8 +53,9 @@ function countViews(ip) {
     return response.json();
   })
   .then(data => {
-    const views = data.views;
-    animateCountUp(views);
+    const actualViews = data.views;
+    const totalViews = actualViews + FAKE_VIEWER_COUNT; // Add fake viewer count
+    animateCountUp(totalViews); // Use the total views in the animation
   })
   .catch(error => {
     console.error("Error recording view:", error);
