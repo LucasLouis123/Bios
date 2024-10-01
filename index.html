@@ -1,102 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:title" content="@x1nf" />
-    <meta
-      property="og:description"
-      content="Nine Nine Nine, i never get high - @x1nf"
-    />
-    <meta
-      property="og:image"
-      id="embed-icon"
-      content="https://ddosreviews.cc/assets/img/pfp.png"
-    />
-    <meta name="theme-color" content="#878ece" />
-
+    <meta property="og:title" content="@.wxrn" />
+    <meta property="og:description" content="Six, six, six. I'm so fucking sick." />
+    <meta property="og:image" id="embed-icon" content="https://wxrn.lol/assets/img/black.png" />
+    <meta name="theme-color" content="#808080" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link
-      rel="shortcut icon"
-      id="short-icon"
-      href="assets/img/pfp.png"
-      type="image/x-icon"
-    />
-
-    <script
-      src="https://kit.fontawesome.com/b756c00e57.js"
-      crossorigin="anonymous"
-    ></script>
+    <link rel="shortcut icon" id="short-icon" href="assets/img/black.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/b756c00e57.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <title></title>
-  </head>
+</head>
 
-  <body>
-
-    <body>
-
+<body>
     <div id="entry-overlay" class="entry-overlay">
-
-      <div class="overlay-content">
-
-        <p id="check-p">
-
-          Checking your connection!
-
-        </p>
-
-      </div>
-
+        <div class="overlay-content">
+            <p id="check-p">Checking your connection!</p>
+        </div>
     </div>
 
     <main>
-      
-      <div id="view-counter" class="view-counter">
-        <span><i class="fa-regular fa-eye"></i> </span
-        ><span id="page_views">0</span>
-      </div>
-      <img id="dc-pfp" src="assets/img/pfp.png" />
-      <span id="who">custom</span>
-      <span id="footer"></span>
-      <div class="music-player">
-        <input
-          type="range"
-          id="seek-bar"
-          value="0"
-          min="0"
-          max="100"
-          step="1"
-        />
-
-        <div class="controls">
-  <div class="volume-control">
-              <button id="volume-button">
-                  <i class="icon fa-solid fa-volume-up"></i>
-              </button>
-              <input type="range" id="volume-slider" min="0" max="1" step="0.01" style="display:none;"/>
-          </div>      
-          <button id="prev"><i class="icon fa-solid fa-backward"></i></button>
-          <button id="play-pause"><i class="icon fa-solid fa-play"></i></button>
-          <button id="next"><i class="icon fa-solid fa-forward"></i></button>
-          <button id="lyrics"><i class="icon fa-solid fa-music"></i></button>
+        <div id="view-counter" class="view-counter">
+            <span><i class="fa-regular fa-eye"></i> </span>
+            <span id="page_views">0</span>
         </div>
-      </div>
 
-      <div class="flexbox">
-        <a href="https://instagram.com/zwijg.sh" target="_blank"
-          ><button><i class="icon fa-brands instagram"></i>@zwijg.sh</button></a
-        >
-        <a href="https://www.tiktok.com/@wastedvon" target="_blank"
-          ><button><i class="icon fa-brands tiktok"></i>@wastedvon</button></a
-        >
-        <a href="discord" target="_blank"
-          ><button><i class="icon fa-brands discord"></i>/swatting</button></a
-        >
-      </div>
+        <img id="dc-pfp" crossorigin="anonymous" src="assets/img/black.png" />
+        <span id="who">warn</span>
+        <span id="footer"></span>
+
+        <div class="music-player">
+            <input type="range" id="seek-bar" value="0" min="0" max="100" step="1" />
+            <div class="controls">
+                <div class="volume-control">
+                    <button id="volume-button">
+                        <i class="icon fa-solid fa-volume-up"></i>
+                    </button>
+                    <input type="range" id="volume-slider" min="0" max="1" step="0.01" style="display:none;" />
+                </div>
+                <button id="prev"><i class="icon fa-solid fa-backward"></i></button>
+                <button id="play-pause"><i class="icon fa-solid fa-play"></i></button>
+                <button id="next"><i class="icon fa-solid fa-forward"></i></button>
+                <button id="lyrics-button"><i class="icon fa-solid fa-music"></i></button>
+            </div>
+        </div>
+
+        <div class="flexbox">
+            <a href="https://t.me/wxrned" target="_blank">
+                <button><i class="icon fa-brands telegram"></i>@wxrned</button>
+            </a>
+            <a href="https://www.tiktok.com/@wxrned_" target="_blank">
+                <button><i class="icon fa-brands tiktok"></i>@wxrned_</button>
+            </a>
+            <a href="discord" target="_blank">
+                <button><i class="icon fa-brands discord"></i>/mag</button>
+            </a>
+        </div>
     </main>
 
     <div id="overlay"></div>
+
+    <div id="lyrics-popup">
+        <h2>〤 lyrics 〤</h2>
+        <div id="lyricsDisplay"><div class='loading'></div></div>
+        <button id="lyrics-close">close</button>
+    </div>
+
+ <div id="overlay"></div>
     <div id="popup">
       <h2>ʚ ♡ ɞ</h2>
 
@@ -168,14 +142,15 @@
       <button onclick="closePopup()">close</button>
     </div>
 
-    <audio id="audio" src=""></audio>
+    <audio id="audio"></audio>
+
 
     <!-- Scripts -->
     <script src="assets/js/inspect.js"></script>
     <script src="assets/js/title.js"></script>
     <script src="assets/js/viewCount.js"></script>
-    <script src="assets/js/player.js"></script>
     <script src="assets/js/popup.js"></script>
-    <script src="assets/js/popupAvatars.js"></script>
-  </body>
+    <script src="assets/js/loadAssets.js"></script>
+    <script src="assets/js/player.js"></script>
+</body>
 </html>
