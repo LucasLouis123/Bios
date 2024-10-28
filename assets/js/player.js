@@ -20,13 +20,25 @@ const API_URL = "https://api.wxrn.lol/api/lyrics";
 const defaultFooterText = "〤 CutNation 〤";
 
 const tracks = [
-    { title: "Ndotz - Embrace It", path: "assets/music/EmbraceIt.mp3" }, },
-    { title: "King Von - 2AM", path: "assets/music/2AM.mp3" },
-    { title: "Ken Carson - mewtwo", path: "assets/music/mewtwo.mp3" },
-    { title: "LeoStayTrill - Pink Lemonade", path: "assets/music/PinkLemonade.mp3" },
-    { title: "Nle Choppa x 41 - Or What", path: "assets/music/nle.mp3" },
-    { title: "Tiakola - MANON B" path: "assets/music/MANONB.mp3" },
-    { title: "Chii Wvttz - Shoot Pt.2", path: "assets/music/music.mp3" }
+ { title: "Ndotz - Embrace It", path: "assets/music/EmbraceIt.mp3" }, },
+ { title: "King Von - 2AM", path: "assets/music/2AM.mp3" },
+ { title: "Ken Carson - mewtwo", path: "assets/music/mewtwo.mp3" },
+ { title: "LeoStayTrill - Pink Lemonade", path: "assets/music/PinkLemonade.mp3" },
+ { title: "Nle Choppa x 41 - Or What", path: "assets/music/nle.mp3" },
+ { title: "Tiakola - MANON B" path: "assets/music/MANONB.mp3" },
+ { title: "Chii Wvttz - Shoot Pt.2", path: "assets/music/music.mp3" }
+ { title: "Ken Carson - Lose It", path: "assets/music/LoseIt.mp3" },
+ { title: "Don Toliver - Bandit", path: "assets/music/Bandit.mp3" },
+ { title: "Ken Carson - Succubus", path: "assets/music/Succubus.mp3" }, 
+ { title: "uglyandz - HayFever", path: "assets/music/HeyFever.mp3" },
+ { title: "Blue Bills", path: "assets/music/BlueBills.mp3" },
+ { title: "Ken Carson - Green Room", path: "assets/music/GreenRoom.mp3" }, 
+ { title: "Blue Bills", path: "assets/music/BlueBills.mp3" }, 
+ { title: "che - GET NAKED", path: "assets/music/GetNaked.mp3" },
+ { title: "Nle Choppa & 41 - Or What?", path: "assets/music/nle.mp3" },
+ { title: "Destroy Lonely - if looks could kill", path: "assets/music/iflookscouldkill.mp3" }  
+ { title: "Yeat - Shade", path: "assets/music/Shade.mp3" },
+ { title: "Yeat - No morë talk", path: "assets/music/NoMoreTalk.mp3" },        
 ];
 
 audioPlayer.volume = 0.1;
