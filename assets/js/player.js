@@ -1,5 +1,5 @@
 const mainContent = document.querySelector("main");
-const overlay = document.getElementById('overlay');
+const overlay = document.getElementById("overlay");
 const audioPlayer = document.getElementById("audio");
 const playPauseBtn = document.getElementById("play-pause");
 const prevBtn = document.getElementById("prev");
@@ -16,8 +16,7 @@ const lyricsCloseBtn = document.getElementById("lyrics-close");
 const lyricsButton = document.getElementById("lyrics-button");
 
 const API_URL = "https://api.wxrn.lol/api/lyrics";
-
-const defaultFooterText = "〤 CutNation 〤";
+const defaultFooterText = "〤 unbothered 〤";
 
 const tracks = [
   { title: "Ndotz - Embrace It", path: "assets/music/EmbraceIt.mp3" },
@@ -73,7 +72,8 @@ function playPrevTrack() {
 
 function updateSeekBar() {
   if (!isDragging) {
-    const seekPercentage = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+    const seekPercentage =
+      (audioPlayer.currentTime / audioPlayer.duration) * 100;
     seekBar.value = seekPercentage || 0;
   }
 }
@@ -88,6 +88,49 @@ function shuffleTracks() {
 function loadRandomTrack() {
   shuffleTracks();
   loadTrack(0, "slide-in-right");
+}
+
+function createLyricsQuery(track) {
+  const accentsMap = {
+    à: "a",
+    á: "a",
+    â: "a",
+    ä: "a",
+    å: "a",
+    æ: "ae",
+    ç: "c",
+    è: "e",
+    é: "e",
+    ê: "e",
+    ë: "e",
+    ì: "i",
+    í: "i",
+    î: "i",
+    ï: "i",
+    ð: "d",
+    ñ: "n",
+    ò: "o",
+    ó: "o",
+    ô: "o",
+    ö: "o",
+    ø: "o",
+    ù: "u",
+    ú: "u",
+    û: "u",
+    ü: "u",
+    ý: "y",
+    ÿ: "y",
+    ß: "ss",
+  };
+
+  const normalizedTitle = track.title
+    .toLowerCase()
+    .replace(/ - /g, " ")
+    .split("")
+    .map((char) => accentsMap[char] || char)
+    .join("");
+  
+  track.lyricsQuery = normalizedTitle;
 }
 
 seekBar.addEventListener("input", (e) => {
@@ -123,7 +166,10 @@ function loadTrack(index, animationClass) {
 }
 
 async function fetchLyrics(track, options = {}) {
-  const response = await fetch(`${API_URL}?query=${encodeURIComponent(track)}`, options);
+  const response = await fetch(
+    `${API_URL}?query=${encodeURIComponent(track)}`,
+    options
+  );
   if (!response.ok) throw new Error("Network response was not ok");
   const data = await response.json();
   return data;
