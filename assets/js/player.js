@@ -130,76 +130,91 @@ async function fetchLyrics(track, options = {}) {
 }
 
 async function displayLyrics() {
-  // Extract song title without artist name
-  const fullTitle = tracks[currentTrack].title;
-  const songTitle = fullTitle.includes(" - ") ? fullTitle.split(" - ")[1] : fullTitle;
-
+  const playingTrack = tracks[currentTrack].lyricsQuery;
   lyricsDisplay.innerHTML = "<div class='loading'></div>";
   lyricsDisplay.style.color = "white";
   isLoading = true;
 
   try {
-    // Fetch lyrics using only the song title
-    const lyricsArray = await fetchLyrics(songTitle);
-
+    const lyricsArray = await fetchLyrics(playingTrack);
     if (!lyricsArray || lyricsArray.error) {
       lyricsDisplay.innerHTML = "No lyrics available.";
       isLoading = false;
       return;
     }
 
-    // Update the lyrics display
-    updateLyricsDisplay(lyricsArray, fullTitle);
-  } catch (error) {
-    console.error("Error fetching lyrics:", error);
-    lyricsDisplay.innerHTML = "<div class='error-display'>Error fetching lyrics.</div>";
-  } finally {
-    isLoading = false;
-  }
-}
+    lyricsDisplay.textContent = "";
 
-// Helper function to update lyrics display
-function updateLyricsDisplay(lyricsArray, fullTitle) {
-  const lyricsWrapper = document.createElement("div");
-  lyricsWrapper.className = "lyrics-wrapper";
-  lyricsDisplay.appendChild(lyricsWrapper);
+    const lyricsWrapper = document.createElement("div");
+    lyricsWrapper.className = "lyrics-wrapper";
+    lyricsDisplay.appendChild(lyricsWrapper);
+    const fullTitle = tracks[currentTrack].title;
+    const songArtist = fullTitle.includes(" - ")
+      ? fullTitle.split(" - ")[0]
+      : fullTitle;
+    const songTitle = fullTitle.includes(" - ")
+      ? fullTitle.split(" - ")[1]
+      : fullTitle;
 
-  // Display song title
-  lyricsWrapper.innerHTML = `<div class="lyric-line title">${fullTitle}</div>`;
+    lyricsWrapper.innerHTML = `<div class="lyric-line title">${songArtist}<br><br>${songTitle}</div>`;
+    const firstLyricTimestamp =
+      lyricsArray.length > 0 ? lyricsArray[0].seconds : 0;
+    let lastRenderedIndex = -1;
 
-  const updateDisplayedLyrics = () => {
-    const currentTime = audioPlayer.currentTime;
-    let currentIndex = 0;
-
-    for (let i = 0; i < lyricsArray.length; i++) {
-      if (currentTime >= lyricsArray[i].seconds) {
-        currentIndex = i;
-      } else {
-        break;
+    const updateDisplayedLyrics = () => {
+      const currentTime = audioPlayer.currentTime;
+      if (currentTime < firstLyricTimestamp) {
+        lyricsWrapper.innerHTML = `<div class="lyric-line title">${songArtist}<br><br>${songTitle}</div>`;
+        return;
       }
-    }
 
-    // Update lyrics display if the line changed
-    if (currentIndex !== lastRenderedIndex) {
-      lastRenderedIndex = currentIndex;
-      lyricsWrapper.innerHTML = "";
-      lyricsWrapper.innerHTML = `<div class="lyric-line">${lyricsArray[currentIndex].lyrics}</div>`;
-      lyricsWrapper.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  };
+      let currentIndex = 0;
+      for (let i = 0; i < lyricsArray.length; i++) {
+        if (currentTime >= lyricsArray[i].seconds) {
+          currentIndex = i;
+        } else {
+          break;
+        }
+      }
 
-  audioPlayer.removeEventListener("timeupdate", updateDisplayedLyrics);
-  audioPlayer.addEventListener("timeupdate", updateDisplayedLyrics);
-}
+      if (currentIndex !== lastRenderedIndex) {
+        lastRenderedIndex = currentIndex;
+        lyricsWrapper.innerHTML = "";
+        if (currentIndex > 0) {
+          const prevLine = document.createElement("div");
+          prevLine.className = "lyric-line previous";
+          prevLine.textContent = lyricsArray[currentIndex - 1].lyrics;
+          lyricsWrapper.appendChild(prevLine);
+        }
+        const currentLine = document.createElement("div");
+        currentLine.className = "lyric-line highlight slide-in";
+        currentLine.textContent = lyricsArray[currentIndex].lyrics;
+        lyricsWrapper.appendChild(currentLine);
+        if (currentIndex < lyricsArray.length - 1) {
+          const nextLine = document.createElement("div");
+          nextLine.className = "lyric-line next slide-in";
+          nextLine.textContent = lyricsArray[currentIndex + 1].lyrics;
+          lyricsWrapper.appendChild(nextLine);
+        }
 
+        lyricsWrapper.style.display = "block";
+        currentLine.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    };
+
+    updateDisplayedLyrics();
+    audioPlayer.removeEventListener("timeupdate", updateDisplayedLyrics);
+    audioPlayer.addEventListener("timeupdate", updateDisplayedLyrics);
   } catch (error) {
-    if (error.name === 'AbortError') {
+    if (error.name === "AbortError") {
       console.warn("Fetch aborted for lyrics.");
     } else {
-      lyricsDisplay.innerHTML = "<div class='loading'>Error fetching lyrics.</div>";
+      lyricsDisplay.innerHTML =
+        "<div class='loading'>Error fetching lyrics.</div>";
       console.error("Error fetching lyrics:", error);
       setTimeout(() => {
-        lyricsDisplay.innerHTML = "<div class='error-display'>Error fetching lyrics.</div>";
+        lyricsDisplay.innerHTML =
+          "<div class='error-display'>Error fetching lyrics.</div>";
       }, 1000);
     }
   } finally {
@@ -209,29 +224,29 @@ function updateLyricsDisplay(lyricsArray, fullTitle) {
 
 lyricsCloseBtn.addEventListener("click", () => {
   lyricsPopup.classList.remove("show");
-  mainContent.classList.remove('no-click');
-  overlay.style.display = 'block';
-  overlay.classList.remove('show');
+  mainContent.classList.remove("no-click");
+  overlay.style.display = "block";
+  overlay.classList.remove("show");
   setTimeout(() => {
-    lyricsPopup.style.display = "none"
-    overlay.style.display = 'none';
+    lyricsPopup.style.display = "none";
+    overlay.style.display = "none";
   }, 250);
 });
 
 lyricsButton.addEventListener("click", () => {
   lyricsPopup.style.display = "block";
-  overlay.style.display = 'block';
-  mainContent.classList.add('no-click');
+  overlay.style.display = "block";
+  mainContent.classList.add("no-click");
   lyricsPopup.classList.add("show");
-  overlay.classList.add('show');
+  overlay.classList.add("show");
 });
 
 footer.addEventListener("click", () => {
   lyricsPopup.style.display = "block";
-  overlay.style.display = 'block';
-  mainContent.classList.add('no-click');
+  overlay.style.display = "block";
+  mainContent.classList.add("no-click");
   lyricsPopup.classList.add("show");
-  overlay.classList.add('show');
+  overlay.classList.add("show");
 });
 
 function showDefaultFooter(animationClass) {
@@ -242,6 +257,10 @@ function showDefaultFooter(animationClass) {
 }
 
 window.onload = function () {
+  tracks.forEach((track) => {
+    createLyricsQuery(track);
+  });
+
   loadRandomTrack();
   displayLyrics(currentTrack);
 
@@ -251,14 +270,12 @@ window.onload = function () {
   audioPlayer.addEventListener("ended", () => {
     playNextTrack();
   });
-
   audioPlayer.addEventListener("timeupdate", updateSeekBar);
 
   volumeSlider.addEventListener("input", function () {
     volumeValue = this.value / 100;
     document.documentElement.style.setProperty("--volume", volumeValue);
   });
-  
   volumeButton.addEventListener("mouseenter", showSlider);
   volumeButton.addEventListener("mouseleave", () => {
     setTimeout(() => {
@@ -267,11 +284,9 @@ window.onload = function () {
       }
     }, 100);
   });
-  
   volumeSlider.addEventListener("mouseenter", () => {
     isHovering = true;
   });
-  
   volumeSlider.addEventListener("mouseleave", () => {
     setTimeout(() => {
       if (!volumeButton.matches(":hover")) {
@@ -279,12 +294,11 @@ window.onload = function () {
       }
     }, 100);
   });
-  
   volumeSlider.addEventListener("input", (e) => {
     audioPlayer.volume = e.target.value;
   });
-  
+
   volumeSlider.value = audioPlayer.volume;
 
-  showDefaultFooter('slide-in-right');
+  showDefaultFooter("slide-in-right");
 };
