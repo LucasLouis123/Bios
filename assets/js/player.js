@@ -20,7 +20,7 @@ const API_URL = "https://api.wxrn.lol/api/lyrics";
 const defaultFooterText = "〤 CutNation 〤";
 
 const tracks = [
- { title: "Ndotz - Embrace It", path: "assets/music/EmbraceIt.mp3" }, },
+ { title: "Ndotz - Embrace It", path: "assets/music/EmbraceIt.mp3" },
  { title: "King Von - 2AM", path: "assets/music/2AM.mp3" },
  { title: "Ken Carson - mewtwo", path: "assets/music/mewtwo.mp3" },
  { title: "LeoStayTrill - Pink Lemonade", path: "assets/music/PinkLemonade.mp3" },
