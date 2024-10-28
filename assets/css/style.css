@@ -42,6 +42,8 @@ body {
   animation-name: fadeIn;
   animation-duration: 1s;
   font-family: monospace;
+  min-height: 100vh;
+  min-height: 100dvh;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
