@@ -33,13 +33,10 @@ const tracks = [
   { title: "uglyandz - HayFever", path: "assets/music/HeyFever.mp3" },
   { title: "Blue Bills", path: "assets/music/BlueBills.mp3" },
   { title: "Ken Carson - Green Room", path: "assets/music/GreenRoom.mp3" }, 
-  { title: "Blue Bills", path: "assets/music/BlueBills.mp3" }, 
   { title: "che - GET NAKED", path: "assets/music/GetNaked.mp3" },
-  { title: "Nle Choppa & 41 - Or What?", path: "assets/music/nle.mp3" },
   { title: "Destroy Lonely - if looks could kill", path: "assets/music/iflookscouldkill.mp3" }  
-  { title: "Yeat - Shade", path: "assets/music/Shade.mp3" },
-  { title: "Yeat - No morë talk", path: "assets/music/NoMoreTalk.mp3" },    
-  { title: "Sugarhill Ddot & STAR BANDZ - My Baby", path: "assets/music/baby.mp3" },    
+  { title: "Yeat - Shade", path: "assets/music/Shade.mp3" },   
+  { title: "Sugarhill Ddot x STAR BANDZ - My Baby", path: "assets/music/baby.mp3" },    
 ];
 
 audioPlayer.volume = 0.1;
