@@ -10,7 +10,7 @@ const firebaseConfig = {
 };
 
 // Define your fake viewer count here
-const FAKE_VIEWER_COUNT = 0; // Change this value to whatever fake count you want
+const FAKE_VIEWER_COUNT = 200; // Change this value to whatever fake count you want
 
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
