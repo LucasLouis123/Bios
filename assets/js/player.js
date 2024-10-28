@@ -130,13 +130,17 @@ async function fetchLyrics(track, options = {}) {
 }
 
 async function displayLyrics() {
-  const playingTrack = tracks[currentTrack].lyricsQuery;
+  // Extract song title without artist name
+  const fullTitle = tracks[currentTrack].title;
+  const songTitle = fullTitle.includes(" - ") ? fullTitle.split(" - ")[1] : fullTitle;
+
   lyricsDisplay.innerHTML = "<div class='loading'></div>";
   lyricsDisplay.style.color = "white";
   isLoading = true;
 
   try {
-    const lyricsArray = await fetchLyrics(playingTrack);
+    // Fetch lyrics using only the song title
+    const lyricsArray = await fetchLyrics(songTitle);
 
     if (!lyricsArray || lyricsArray.error) {
       lyricsDisplay.innerHTML = "No lyrics available.";
@@ -144,72 +148,50 @@ async function displayLyrics() {
       return;
     }
 
-    lyricsDisplay.textContent = "";
+    // Update the lyrics display
+    updateLyricsDisplay(lyricsArray, fullTitle);
+  } catch (error) {
+    console.error("Error fetching lyrics:", error);
+    lyricsDisplay.innerHTML = "<div class='error-display'>Error fetching lyrics.</div>";
+  } finally {
+    isLoading = false;
+  }
+}
 
-    const lyricsWrapper = document.createElement("div");
-    lyricsWrapper.className = "lyrics-wrapper";
-    lyricsDisplay.appendChild(lyricsWrapper);
+// Helper function to update lyrics display
+function updateLyricsDisplay(lyricsArray, fullTitle) {
+  const lyricsWrapper = document.createElement("div");
+  lyricsWrapper.className = "lyrics-wrapper";
+  lyricsDisplay.appendChild(lyricsWrapper);
 
-    // Extract only the song title without the artist name (assuming "artist - songName" format)
-    const fullTitle = tracks[currentTrack].title;
-    const songArtist = fullTitle.includes(" - ") ? fullTitle.split(" - ")[0] : fullTitle;
-    const songTitle = fullTitle.includes(" - ") ? fullTitle.split(" - ")[1] : fullTitle;
+  // Display song title
+  lyricsWrapper.innerHTML = `<div class="lyric-line title">${fullTitle}</div>`;
 
-    // Display the song title until the first lyrics appear
-    lyricsWrapper.innerHTML = `<div class="lyric-line title">${songArtist}<br><br>${songTitle}</div>`;
+  const updateDisplayedLyrics = () => {
+    const currentTime = audioPlayer.currentTime;
+    let currentIndex = 0;
 
-    const firstLyricTimestamp = lyricsArray.length > 0 ? lyricsArray[0].seconds : 0;
-    let lastRenderedIndex = -1;
-
-    const updateDisplayedLyrics = () => {
-      const currentTime = audioPlayer.currentTime;
-
-      if (currentTime < firstLyricTimestamp) {
-        lyricsWrapper.innerHTML = `<div class="lyric-line title">${songArtist}<br><br>${songTitle}</div>`;
-        return;
+    for (let i = 0; i < lyricsArray.length; i++) {
+      if (currentTime >= lyricsArray[i].seconds) {
+        currentIndex = i;
+      } else {
+        break;
       }
+    }
 
-      let currentIndex = 0;
-      for (let i = 0; i < lyricsArray.length; i++) {
-        if (currentTime >= lyricsArray[i].seconds) {
-          currentIndex = i;
-        } else {
-          break;
-        }
-      }
+    // Update lyrics display if the line changed
+    if (currentIndex !== lastRenderedIndex) {
+      lastRenderedIndex = currentIndex;
+      lyricsWrapper.innerHTML = "";
+      lyricsWrapper.innerHTML = `<div class="lyric-line">${lyricsArray[currentIndex].lyrics}</div>`;
+      lyricsWrapper.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
 
-      if (currentIndex !== lastRenderedIndex) {
-        lastRenderedIndex = currentIndex;
-        lyricsWrapper.innerHTML = "";
+  audioPlayer.removeEventListener("timeupdate", updateDisplayedLyrics);
+  audioPlayer.addEventListener("timeupdate", updateDisplayedLyrics);
+}
 
-        if (currentIndex > 0) {
-          const prevLine = document.createElement("div");
-          prevLine.className = "lyric-line previous";
-          prevLine.textContent = lyricsArray[currentIndex - 1].lyrics;
-          lyricsWrapper.appendChild(prevLine);
-        }
-
-        const currentLine = document.createElement("div");
-        currentLine.className = "lyric-line highlight slide-in";
-        currentLine.textContent = lyricsArray[currentIndex].lyrics;
-        lyricsWrapper.appendChild(currentLine);
-
-        if (currentIndex < lyricsArray.length - 1) {
-          const nextLine = document.createElement("div");
-          nextLine.className = "lyric-line next slide-in";
-          nextLine.textContent = lyricsArray[currentIndex + 1].lyrics;
-          lyricsWrapper.appendChild(nextLine);
-        }
-
-        lyricsWrapper.style.display = "block";
-        currentLine.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    };
-
-    updateDisplayedLyrics();
-
-    audioPlayer.removeEventListener("timeupdate", updateDisplayedLyrics);
-    audioPlayer.addEventListener("timeupdate", updateDisplayedLyrics);
   } catch (error) {
     if (error.name === 'AbortError') {
       console.warn("Fetch aborted for lyrics.");
