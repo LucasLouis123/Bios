@@ -1,37 +1,18 @@
 :root {
-    --bg-color: #0a0a0a; /* Dark background */
-    --accent-color: #d3d3d3; /* Light grey for accent */
-    --img-border-color: var(--accent-color); /* Image border now uses the light grey accent */
-    --btn-border-color: rgb(20, 20, 20); /* Button border color */
-    --btn-bg: rgb(20 20 20 / 32%); /* Semi-transparent black for button background */
-    --text-color: #d3d3d3; /* Light grey for text */
-    --text-color-light: #d3d3d3; /* Light grey */
-    --btn-color: var(--text-color); /* Button text color uses light grey */
-    --ahref-color: var(--text-color); /* Links now light grey */
-    --icon-color: var(--accent-color); /* Icons use the light grey accent */
-    --icon-bg: rgba(211, 211, 211, 0.3); /* Light grey background for icons */
-    --btn-hover-bg: rgb(20 20 20 / 50%); /* Darker semi-transparent background on button hover */
-    --btn-border: 2px solid var(--btn-border-color); /* Button border */
-    --img-border: 2px dashed var(--img-border-color); /* Dashed image border now light grey */
-    --scroll-bar: var(--accent-color); /* Scrollbar uses light grey */
-    --selection: rgba(211, 211, 211, 0.705); /* Selection color with transparency */
+    --bg-color: #0a0a0a;
+    --accent-color: #9f4ac6;
+    --img-border-color: var(--accent-color);
+    --btn-border-color: rgb(20, 20, 20);
+    --btn-bg: rgb(20 20 20 / 32%);
+    --text-color: #54017a;
+    --text-color-light: #ca9ad1;
+    --btn-color: var(--text-color);
+    --ahref-color: var(--text-color);
+    --icon-color: var(--accent-color);
+    --icon-bg: rgba(185, 211, 240, 0.3);
+    --btn-hover-bg: rgb(20 20 20 / 50%);
+    --btn-border: 2px solid var(--btn-border-color);
+    --img-border: 2px dashed var(--img-border-color);
+    --scroll-bar: var(--accent-color);
+    --selection: rgba(55, 13, 114, 0.705);
 }
-
-/* Glow Effect */
-button:hover, a:hover, .icon:hover, .music-player button:hover {
-    box-shadow: 0 0 15px var(--accent-color); /* Light grey glow on hover */
-}
-
-#popup ul li .friend-name {
-    text-shadow: 0px 2px 10px rgba(211, 211, 211, 0.5); /* Light grey text shadow for glow effect */
-}
-
-#seek-bar::-webkit-slider-thumb:hover, #seek-bar::-moz-range-thumb:hover {
-    background: #d3d3d3; /* Light grey thumb on hover */
-}
-
-/* Any additional hover states */
-button:hover {
-    background-color: rgba(211, 211, 211, 0.1); /* Slight light grey background on hover */
-}
-
