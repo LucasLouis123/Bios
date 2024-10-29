@@ -859,4 +859,26 @@ a:hover,
   .music-player i {
     font-size: 18px;
   }
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.9rem;
+    color: #fff;
+    border-radius: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
+
+.owner {
+    background-color: #FF4500; /* Orange-red for Owner */
+}
+
+.admin {
+    background-color: #1E90FF; /* Dodger blue for Admin */
+}
+
+.mod {
+    background-color: #32CD32; /* Lime green for Moderator */
+}
+
