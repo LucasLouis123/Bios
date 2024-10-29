@@ -16,7 +16,7 @@ const lyricsCloseBtn = document.getElementById("lyrics-close");
 const lyricsButton = document.getElementById("lyrics-button");
 
 const API_URL = "https://api.wxrn.lol/api/lyrics";
-const defaultFooterText = "〤 unbothered 〤";
+const defaultFooterText = "〤 X1nf PlayList  〤";
 
 const tracks = [
   { title: "Ndotz - Embrace It", path: "assets/music/EmbraceIt.mp3" },
@@ -29,7 +29,7 @@ const tracks = [
   { title: "Ken Carson - Lose It", path: "assets/music/LoseIt.mp3" },
   { title: "Don Toliver - Bandit", path: "assets/music/Bandit.mp3" },
   { title: "Ken Carson - Succubus", path: "assets/music/Succubus.mp3" },
-  { title: "uglyandz - HayFever", path: "assets/music/HeyFever.mp3" },
+  { title: "uglyandz - HayFever", path: "assets/music/Heyfever.mp3" },
   { title: "Blue Bills", path: "assets/music/BlueBills.mp3" },
   { title: "Ken Carson - Green Room", path: "assets/music/GreenRoom.mp3" },
   { title: "che - GET NAKED", path: "assets/music/GetNaked.mp3" },
