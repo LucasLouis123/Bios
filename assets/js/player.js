@@ -35,8 +35,8 @@ const tracks = [
   { title: "che - GET NAKED", path: "assets/music/GetNaked.mp3" },
   { title: "Destroy Lonely - if looks could kill", path: "assets/music/iflookscouldkill.mp3" },
   { title: "Yeat - Shade", path: "assets/music/Shade.mp3" },
-  { title: "Sugarhill Ddot x STAR BANDZ - My Baby", path: "assets/music/baby.mp3" }
-  { title: "Leblanco - U23", path: "assets/music/Leblanco.mp3" },
+  { title: "Sugarhill Ddot x STAR BANDZ - My Baby", path: "assets/music/baby.mp3" },
+  { title: "Leblanco - U23", path: "assets/music/Leblanco.mp3" }
 ];
 
 audioPlayer.volume = 0.1;
