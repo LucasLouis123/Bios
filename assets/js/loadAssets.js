@@ -1,5 +1,5 @@
 const colorThief = new ColorThief();
-const discordId = '869687741955309578';
+const discordId = '443498206500880384';
 
 async function syncDisplayName() {
     const nameElement = document.querySelector('#who');
